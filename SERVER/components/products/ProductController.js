@@ -1,0 +1,55 @@
+const productService = require('./ProductService');
+
+const getAllProducts = async ()=>{
+    try{
+        return await productService.getAllProducts();
+    }catch(error){
+        console.log("error productController.getAllProducts: "+error);
+        throw error;
+    }
+}
+const deleteProductById =async(id)=>{
+    try{
+        return await productService.deleteProductById(id);
+    }
+    catch(error){
+        console.log("error productController.deleteProductById: "+error);
+        throw error;
+    }
+}
+const addNewProduct =async(name,price,quantity,image,category)=>{
+    try{
+        return await productService.addNewProduct(name,price,quantity,image,category);
+    }
+    catch(error){
+        console.log("error addNewProduct: "+error);
+        throw error;
+    }
+}
+const updateProduct = async (id,name,price,quantity,image,category)=>{
+    try {
+        return await productService.updateProduct(id,name,price,quantity,image,category);
+    } catch (error) {
+        console.log("updateProduct error: "+error);
+        throw error;
+    }
+}
+const getProductById = async(id)=>{
+    try {
+        return await productService.getProductById(id);
+    } catch (error) {
+        console.log("getProductById error: "+error);
+        throw error;
+    }
+}
+
+
+const search = async (keyword)=>{
+    try {
+        return await productService.search(keyword);
+    } catch (error) {
+        console.log("search error: "+error);
+         
+    }
+}
+module.exports={getAllProducts,deleteProductById,addNewProduct,updateProduct,getProductById,search};
