@@ -5,7 +5,7 @@ router.get('/', async (req, res, next) => {
     // hien thi trang danh sach sp
     const users = await userController.getAllUsers();
     console.log(users);
-    res.render('product/list', { users });
+    res.render('user/list-user', { users });
 });
 router.get('/logout', async (req, res, next) => {
     const users = await userController.getAllUsers();

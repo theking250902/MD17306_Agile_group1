@@ -8,6 +8,7 @@ router.get('/', [auth.authenweb], function (req, res, next) {
   res.render('index');
 });
 
+
 // trang login
 router.get('/login', [auth.authenweb], function (req, res, next) {
   // hien thi trnag login

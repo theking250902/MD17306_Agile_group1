@@ -5,6 +5,42 @@ const userController = require('../../components/users/UserController');
 const categoryController = require('../../components/category/CategoryController');
 const uploadFile = require('../../middle/UploadFile');
 const CONFIG = require('../../config/Config');
+
+
+//firebase
+const firebaseAdmin = require('firebase-admin');
+const { v4: uuidv4 } = require('uuid');
+const uuid = uuidv4();
+// change the path of json file
+const serviceAccount = require('../../bookapp-f06b4-firebase-adminsdk-45n3b-c2b1712615.json');
+//intialize
+const admin = firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(serviceAccount),
+});
+//create storage refence
+const storageRef = admin.storage().bucket(`gs://bookapp-f06b4.appspot.com`);
+
+async function uploadFiles(path, filename) {
+
+    // Upload the File
+    const storage = await storageRef.upload(path, {
+        public: true,
+        destination: `/uploads/hashnode/${filename}`,
+        metadata: {
+            firebaseStorageDownloadTokens: uuidv4(),
+        }
+    });
+    console.log(storage[0].metadata);
+    console.log(storage[0].metadata.selfLink);
+    console.log(storage[0].metadata.mediaLink);
+    return storage[0].metadata.mediaLink;
+}
+
+
+
+
+
+
 //localhost:3000/cpanel/product
 router.get('/', async (req, res, next) => {
     //hien thi trang danh sach sp
@@ -36,6 +72,7 @@ router.post('/new', [uploadFile.single('image'),], async (req, res, next) => {
     try {
         let { body, file } = req;
         if (file) {
+            // up image and get link image
             let image = `http://${CONFIG.CONSTANTS.IP}:3000/images/${file.filename}`;
             body = { ...body, image: image }
         }
@@ -43,6 +80,27 @@ router.post('/new', [uploadFile.single('image'),], async (req, res, next) => {
         await productController
             .addNewProduct(name, price, quantity, image, category);
         return res.redirect('/cpanel/product');
+    } catch (error) {
+        console.log('Add new product error: ', error)
+        next(error);
+    }
+})
+router.get('/testUploadImage', async (req, res, next) => {
+    // hien thi add sp
+    const categories = await categoryController.getAllCategories();
+    res.render('product/new', { categories });
+
+});
+router.post('/testUploadImage', [uploadFile.single('image'),], async (req, res, next) => {
+    try {
+        let image;
+        let { body, file } = req;
+        console.log("Hinh ne: ", file);
+        (async () => {
+            image = await uploadFiles(file.path, file.filename);
+            //console.log(image);
+        })();
+
     } catch (error) {
         console.log('Add new product error: ', error)
         next(error);
@@ -88,6 +146,5 @@ router.get('/:id/edit', async (req, res, next) => {
         next(error);
     }
 });
-router
 
 module.exports = router;

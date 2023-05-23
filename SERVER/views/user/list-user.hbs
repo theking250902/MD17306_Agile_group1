@@ -40,7 +40,7 @@
 </head>
 
 <body>
-
+    
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -257,38 +257,23 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="card">
-                    <div class="card-title">
-                        {{!-- <a href="/cpanel/product/new" class="text-white btn btn-primary">Insert New</a> --}}
-                        <a href="/cpanel/product/testUploadImage" class="text-white btn btn-primary">Insert New</a>
-                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Danh sách sản phẩm</h5>
+                        <h5 class="card-title">Danh sách user</h5>
                         <!-- Default Table -->
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Email</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each products}}
+                                {{#each users}}
                                 <tr>
                                     <td>{{this._id}}</td>
                                     <td>{{this.name}}</td>
-                                    <td>{{this.price}}</td>
-                                    <td>{{this.quantity}}</td>
-                                    <td>
-                                        <img style="width: 80px;height: 50px;" src="{{this.image}}">
-                                    </td>
-                                    <td>
-                                        <a href="/cpanel/product/{{this._id}}/edit" class="btn btn-primary">Edit</a>
-                                        <a onclick="confirmDelete('{{this._id}}');" class="btn btn-danger">Delete</a>
-                                    </td>
+                                    <td>{{this.email}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -331,28 +316,28 @@
 
 </body>
 <script>
-    const fetchAPI = async (url, option) => {
-        const res = await fetch(url, option);
+    const fetchAPI =async(url,option)=>{
+        const res=await fetch(url,option);
         return res.json();
     }
-    const deleteProduct = async (id) => {
-        const url = `/cpanel/product/${id}/delete`;
-        const option = {
-            method: 'get',
-            headers: { 'Content-Type': 'application/json' }
+    const deleteProduct= async(id) =>{
+        const url =`/cpanel/product/${id}/delete`;
+        const option ={
+            method:'get',
+            headers:{'Content-Type':'application/json'}
         }
-        try {
-            const result = await fetchAPI(url, option);
-            console.log('Delete result: ', result);
-            if (result.status) {
+        try{
+            const result = await fetchAPI(url,option);
+            console.log('Delete result: ',result);
+            if(result.status){
                 window.location.reload();
             }
-            else {
-
+            else{
+                
             }
         }
-        catch (error) {
-            console.log("delete error: " + error);
+        catch(error){
+            console.log("delete error: "+error);
         }
     }
     const confirmDelete = (id) => {

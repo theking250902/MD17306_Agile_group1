@@ -9,6 +9,19 @@ require('./components/category/CategoryModel');
 require('./components/products/ProductModel');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// //firebase
+// const firebaseAdmin = require('firebase-admin');
+// const { v4: uuidv4 } = require('uuid');
+// // change the path of json file
+// const serviceAccount = require('./bookapp-f06b4-firebase-adminsdk-45n3b-c2b1712615.json');
+// //intialize
+// const admin = firebaseAdmin.initializeApp({
+//   credential: firebaseAdmin.credential.cert(serviceAccount),
+// });
+// //create storage refence
+// const storageRef = admin.storage().bucket(`gs://bookapp-f06b4.appspot.com`);
+
+
 
 
 const productApiRouter = require('./routes/api/ProductAPI');
