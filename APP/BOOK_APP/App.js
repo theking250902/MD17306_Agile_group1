@@ -1,18 +1,16 @@
 
-
 import React from 'react';
 import {
    View,Text
 } from 'react-native';
 
-
-
+import Home from './LongVu/Home';
 
 
 const App = () => {
  return(
   <View>
-    <Text>hello</Text>
+    <Home></Home>
   </View>
  )
 };
