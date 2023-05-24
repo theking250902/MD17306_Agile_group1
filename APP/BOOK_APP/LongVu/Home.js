@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList } from 'react-native'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import ItemHome from './ItemHome';
 
 const Home = (props) => {
@@ -50,56 +50,29 @@ const Home = (props) => {
             }}>Recommendation</Text>
 
             <View style={{ flexDirection: 'row' }}>
-                {/* <View style={{flexDirection: 'row'}}>
-                <View style={styles.container}>
-                    <Image source={require('./images/bookcover.png')}></Image>
-                    <Text style={styles.name}>The Sixth Child</Text>
-                    <Text style={styles.tacgia}>Manith J.</Text>
-                    <Text style={styles.mota}>Begin with eight Sisters who have a really deep bonding
-                         to one another after their parents died...</Text>
-                    <Text style={styles.gia}>$15.00</Text>
-                </View>
-                <View style={styles.container}>
-                    <Image source={require('./images/cover.png')}></Image>
-                    <Text style={styles.name}>The Book of God</Text>
-                    <Text style={styles.tacgia}>Walter Wangerin</Text>
-                    <Text style={styles.mota}>“. . . a feat of imagination and faith.” —Philip Yancey, award-winning author. ...</Text>
-                    <Text style={styles.gia}>$16.88</Text>
-                </View>
-            </View> */}
                 <FlatList
+                    numColumns={3}
                     data={dataNe}
-                    renderItem={({ item }) => <ItemHome products={item}  />}
+                    renderItem={({ item }) => <ItemHome products={item} />}
                     keyExtractor={item => item._id}
                     showsVerticalScrollIndicator={false}
                 />
-
-                {/* <Text style={{
-                    color: '#000000',
-                    fontSize: 20,
-                    fontStyle: 'normal',
-                    fontWeight: '500',
-                    marginTop: 40,
-                    marginLeft: 5
-                }}>Popular</Text>
-
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={styles.container}>
-                        <Image source={require('./images/bookcover.png')}></Image>
-                        <Text style={styles.name}>The Sixth Child</Text>
-                        <Text style={styles.tacgia}>Manith J.</Text>
-                        <Text style={styles.mota}>Begin with eight Sisters who have a really deep bonding
-                            to one another after their parents died...</Text>
-                        <Text style={styles.gia}>$15.00</Text>
-                    </View>
-                    <View style={styles.container}>
-                        <Image source={require('./images/cover.png')}></Image>
-                        <Text style={styles.name}>The Book of God</Text>
-                        <Text style={styles.tacgia}>Walter Wangerin</Text>
-                        <Text style={styles.mota}>“. . . a feat of imagination and faith.” —Philip Yancey, award-winning author. ...</Text>
-                        <Text style={styles.gia}>$16.88</Text>
-                    </View>
-                </View> */}
+            </View>
+            <Text style={{
+                fontWeight: '500',
+                fontSize: 20,
+                color: '#000000',
+                marginLeft: 5,
+                marginTop: 20
+            }}>Ki vu ngu</Text>
+            <View style={{ flexDirection: 'row' }}>
+                <FlatList
+                    numColumns={3}
+                    data={dataNe}
+                    renderItem={({ item }) => <ItemHome products={item} />}
+                    keyExtractor={item => item._id}
+                    showsVerticalScrollIndicator={false}
+                />
             </View>
         </ScrollView>
     )
@@ -146,16 +119,22 @@ const styles = StyleSheet.create({
     }
 })
 
-const dataNe = [{
-    "image": "http://dummyimage.com/134x100.png/ff4444/ffffff",
-    "bookname": "Dextroamphetamine Sulfate",
-    "name": "Felita Tock",
-    "mota": "Poisoning by cocaine, intentional self-harm, sequela",
-    "gia": "$6.57"
-  }, {
-    "image": "http://dummyimage.com/152x100.png/5fa2dd/ffffff",
-    "bookname": "Acetaminophen",
-    "name": "Brok Adam",
-    "mota": "Laceration without foreign body of left back wall of thorax with penetration into thoracic cavity",
-    "gia": "$3.86"
-  }]
+const dataNe = 
+[
+    {
+      "_id": "646df8af686be9054c40d0f7",
+      "name": "The Sixth Child",
+      "price": 15,
+      "content": "carch0@deliciousdays.com",
+      "author": "Manith J.",
+      "image": "https://firebasestorage.googleapis.com/v0/b/bookapp-f06b4.appspot.com/o/%2Fuploads%2Fhashnode%2Fbb297e215dec83b2dafd.jpg?alt=media&token=4da5a3eb-85a1-45b4-8614-6b984407428c"
+    },
+    {
+      "_id": "646df8af686be9054c40d0f8",
+      "name": "The Book of God",
+      "price": 16.88,
+      "content": "mconsadineasd askkkkkkkkkkkk asdkhjasd asdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "author": "Duloxetine Hydrochloride",
+      "image": "https://firebasestorage.googleapis.com/v0/b/bookapp-f06b4.appspot.com/o/%2Fuploads%2Fhashnode%2Fa12a81eda2207c7e2531.jpg?alt=media&token=5300f1c3-ab60-433f-8a42-e98e562774d9"
+    }
+  ]

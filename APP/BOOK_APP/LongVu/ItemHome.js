@@ -8,18 +8,12 @@ const ItemHome = (props) => {
         <View style={{ flexDirection: 'row'}}>
           <View style={styles.container}>
             <Image style={styles.images} st source={{ uri: products.image }}></Image>
-            <Text style={styles.name}>{products.bookname}</Text>
-            <Text style={styles.tacgia}>{products.name}</Text>
-            <Text style={styles.mota}>{products.mota}</Text>
-            <Text style={styles.gia}>{products.gia}</Text>
+            <Text style={styles.name}>{products.name}</Text>
+            <Text style={styles.tacgia}>{products.author}</Text>
+            <Text style={styles.mota}>{products.content}</Text>
+            <Text style={styles.price}>{products.price}</Text>
           </View>
-          <View style={styles.container}>
-            <Image style={styles.images} st source={{ uri: products.image }}></Image>
-            <Text style={styles.name}>{products.bookname}</Text>
-            <Text style={styles.tacgia}>{products.name}</Text>
-            <Text style={styles.mota}>{products.mota}</Text>
-            <Text style={styles.gia}>{products.gia}</Text>
-          </View>
+
         </View>
     </TouchableOpacity>
   )
