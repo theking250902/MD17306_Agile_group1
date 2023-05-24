@@ -3,7 +3,7 @@ const getAllProducts = async (size, page) => {
     // lay toan bo sp trong database
     // size =20 , page =4 ==> 61-80
     try {
-        return await productModel.find().populate('category') // lay category;
+        return await productModel.find()
     } catch (error) {
         console.log("getAllProducts error: " + error);
     }

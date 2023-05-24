@@ -267,10 +267,10 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">Author</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -278,10 +278,10 @@
                             <tbody>
                                 {{#each products}}
                                 <tr>
-                                    <td>{{this._id}}</td>
+                                    <td>{{this.author}}</td>
                                     <td>{{this.name}}</td>
                                     <td>{{this.price}}</td>
-                                    <td>{{this.quantity}}</td>
+                                    <td>{{this.category}}</td>
                                     <td>
                                         <img style="width: 80px;height: 50px;" src="{{this.image}}">
                                     </td>
