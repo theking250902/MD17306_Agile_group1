@@ -7,6 +7,7 @@ import {
 import Screen9 from './Bui_Viet/screen/Screen9';
 import Screen54 from './Bui_Viet/screen/Screen54';
 import Screen10 from './Bui_Viet/screen/Screen10';
+import Screen36 from './Bui_Viet/screen/Screen36';
 
 
 
@@ -15,7 +16,7 @@ import Screen10 from './Bui_Viet/screen/Screen10';
 const App = () => {
  return(
   <View>
-    <Screen10/>
+    <Screen36/>
   </View>
  )
 };
