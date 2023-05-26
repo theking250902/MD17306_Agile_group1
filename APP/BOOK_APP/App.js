@@ -5,12 +5,15 @@ import {
 } from 'react-native';
 
 import Home from './LongVu/Home';
-
+import ItemBook from './LongVu/ItemBook';
+import Book from './LongVu/Book';
+import ItemDetails from './LongVu/ItemDetails';
 
 const App = () => {
  return(
   <View>
-    <Home></Home>
+    {/* <Home></Home> */}
+    <ItemDetails></ItemDetails>
   </View>
  )
 };

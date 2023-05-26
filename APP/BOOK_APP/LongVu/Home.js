@@ -64,7 +64,7 @@ const Home = (props) => {
                 color: '#000000',
                 marginLeft: 5,
                 marginTop: 20
-            }}>Ki vu ngu</Text>
+            }}>Popular</Text>
             <View style={{ flexDirection: 'row' }}>
                 <FlatList
                     numColumns={3}
