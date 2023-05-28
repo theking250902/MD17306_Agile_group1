@@ -6,12 +6,12 @@ const Login = () => {
     <View>
       <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
 
-      <TextInput style={styles.TextInput1}>
-        <Text style={styles.TextUser}>User name</Text>
+      <TextInput placeholder='   User name' style={styles.TextInput1}>
+        <Text />
       </TextInput>
 
-      <TextInput style={styles.TextInput2}>
-        <Text style={styles.TextPass}>Password</Text>
+      <TextInput placeholder='   Password' style={styles.TextInput2}>
+        <Text/>
       </TextInput>
 
       <Pressable style={styles.Press}>
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 270,
     marginStart: 90,
+    marginLeft:90
   },
   TextUser: {
     fontFamily: 'Hind Siliguri',
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
-    color: '#000000',
+    color: '#000000'
   },
   TextInput2: {
     position: 'absolute',
