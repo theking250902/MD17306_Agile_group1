@@ -4,7 +4,7 @@ import React from 'react';
 import {
    View,Text
 } from 'react-native';
-
+import Home from './LongVu/Home';
 
 
 
@@ -12,7 +12,7 @@ import {
 const App = () => {
  return(
   <View>
-    <Text>hello</Text>
+    <Home/>
   </View>
  )
 };
