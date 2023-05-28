@@ -17,18 +17,18 @@ const deleteProductById =async(id)=>{
         throw error;
     }
 }
-const addNewProduct =async(name,price,quantity,image,category)=>{
+const addNewProduct =async(name,author,content,price,image,category)=>{
     try{
-        return await productService.addNewProduct(name,price,quantity,image,category);
+        return await productService.addNewProduct(name,author,content,price,image,category);
     }
     catch(error){
         console.log("error addNewProduct: "+error);
         throw error;
     }
 }
-const updateProduct = async (id,name,price,quantity,image,category)=>{
+const updateProduct = async (id,name,price,image,category)=>{
     try {
-        return await productService.updateProduct(id,name,price,quantity,image,category);
+        return await productService.updateProduct(id,name,price,image,category);
     } catch (error) {
         console.log("updateProduct error: "+error);
         throw error;

@@ -4,8 +4,9 @@ const ObjectId = Schema.ObjectId;
 const schema = new Schema({
     id: { type: ObjectId }, // khóa chính
     name: {type: String}, // kiểu dữ liệu},
+    author:{type:String},
+    content:{type:String},
     price:{type:Number},
-    quantity:{type:Number},
     image:{type:String},
     category:{type:ObjectId,ref:'category'},
 });

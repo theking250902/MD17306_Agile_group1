@@ -35,10 +35,12 @@ const deleteProductById = async (id) => {
     return false;
 
 }
-const addNewProduct = async (name, price, quantity, image, category) => {
+const addNewProduct = async (name,author,content, price, quantity, image, category) => {
     try {
         const newProduct = {
             name,
+            author,
+            content,
             price,
             quantity,
             image,

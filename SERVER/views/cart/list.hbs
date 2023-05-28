@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Forms / Validation - NiceAdmin Bootstrap Template</title>
+    <title>Tables / General - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -20,16 +20,16 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="../../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.5.0
@@ -45,9 +45,9 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">NiceAdmin</span>
+            <a href="/" class="logo d-flex align-items-center">
+                <img src="/assets/img/logo_icon.png" alt="">
+                <span class="d-none d-lg-block">BookApp</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -202,22 +202,18 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
 
-
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-journal-text"></i><span>Product</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a href="/cpanel/user" class="nav-link collapsed" href="pages-contact.html">
+                    <i class="bi bi-person-square"></i>
+                    <span>User</span>
                 </a>
-                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="/cpanel/product">
-                            <i class="bi bi-circle"></i><span>Product</span>
-                        </a>
-                        <a href="/cpanel/product/new">
-                            <i class="bi bi-circle"></i><span>Add New Product</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Forms Nav -->
+            </li><!-- End Contact Page Nav -->
+            <li class="nav-item">
+                <a href="/cpanel/product" class="nav-link collapsed" href="pages-contact.html">
+                    <i class="bi bi-book"></i>
+                    <span>Product</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="pages-contact.html">
                     <i class="bi bi-envelope"></i>
@@ -233,9 +229,9 @@
             </li><!-- End Register Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/login">
+                <a class="nav-link collapsed" href="/api/user/logout">
                     <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Login</span>
+                    <span>Logout</span>
                 </a>
             </li><!-- End Login Page Nav -->
 
@@ -259,83 +255,125 @@
 
     <main id="main" class="main">
         <div class="row">
-            <div class="col-lg-0"></div>
             <div class="col-lg-9">
-                <div class="pagetitle">
-                    <h1>Add New Product</h1>
-                </div><!-- End Page Title -->
                 <div class="card">
+                    <div class="card-title">
+                        {{!-- <a href="/cpanel/product/new" class="text-white btn btn-primary">Insert New</a> --}}
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Browser Default</h5>
-                        <p>Browser default validation with using the <code>required</code> keyword. Try submitting the
-                            form below.
-                            Depending on your browser and OS, you’ll see a slightly different style of feedback.</p>
-
-                        <!-- Browser Default Validation -->
-                        <form class="row g-3" method="post" action="/cpanel/product/testUploadImage" enctype="multipart/form-data">
-                            <div class="col-md-12">
-                                <label for="validationDefault01" class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control" id="validationDefault01" value="" required>
-                            </div>
-                                                        <div class="col-md-12">
-                                <label for="validationDefault01" class="form-label">Author</label>
-                                <input type="text" name="author" class="form-control" id="validationDefault01" value="" required>
-                            </div>
-                                                              <div class="col-md-12">
-                                <label for="validationDefault01" class="form-label">Content</label>
-                                <input type="text" name="content" class="form-control" id="validationDefault01" value="" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="validationDefault02" class="form-label">Price</label>
-                                <input type="number" name="price" class="form-control" id="validationDefault02" value="Doe" required>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="validationDefault03" class="form-label">Image</label>
-                                <input type="file" name="image" class="form-control" id="validationDefault03" required>
-                            </div>
-
-
-                            <div class="col-12">
-                                <label for="validationDefault03" class="form-label">Cagetory</label>
-                                <select class="form-select" name="category" aria-label="Default select example">
-                                    {{#each categories}}
-                                    <option value="{{this._id}}">{{this.name}}</option> 
-                                    {{/each}}
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Submit form</button>
-                            </div>
-
-                        </form>
-                        <!-- End Browser Default Validation -->
-
+                        <h5 class="card-title">Danh sách sản phẩm trong giỏ hàng</h5>
+                        <!-- Default Table -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each products}}
+                                <tr>
+                                    <td>{{this.author}}</td>
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.price}}</td>
+                                    <td>{{this.category}}</td>
+                                    <td>
+                                        <img style="width: 80px;height: 50px;" src="{{this.image}}">
+                                    </td>
+                                    <td>
+                                        <a href="/cpanel/product/{{this._id}}/edit" class="btn btn-primary">Edit</a>
+                                        <a onclick="confirmDelete('{{this._id}}');" class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                        <!-- End Default Table Example -->
                     </div>
                 </div>
 
-            </div>
-            <div class="col-lg-3"></div>
-        </div>
 
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
 
     </main><!-- End #main -->
 
 
-    <!-- Vendor JS Files -->
-    <script src="../../assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="../../assets/vendor/echarts/echarts.min.js"></script>
-    <script src="../../assets/vendor/quill/quill.min.js"></script>
-    <script src="../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../../assets/vendor/php-email-form/validate.js"></script>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="../assets/vendor/echarts/echarts.min.js"></script>
+    <script src="../assets/vendor/quill/quill.min.js"></script>
+    <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <!-- KiVu  JS Files  ahsdkjhakjdahs-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="../javascripts/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="../../public/javascripts/"></script>
     <!-- Template Main JS File -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
+<script>
+    const fetchAPI = async (url, option) => {
+        const res = await fetch(url, option);
+        return res.json();
+    }
+    const deleteProduct = async (id) => {
+        const url = `/cpanel/product/${id}/delete`;
+        const option = {
+            method: 'get',
+            headers: { 'Content-Type': 'application/json' }
+        }
+        try {
+            const result = await fetchAPI(url, option);
+            console.log('Delete result: ', result);
+            if (result.status) {
+                window.location.reload();
+            }
+            else {
+
+            }
+        }
+        catch (error) {
+            console.log("delete error: " + error);
+        }
+    }
+    const confirmDelete = (id) => {
+        swal({
+            title: "Em có chắc không?",
+            text: "Xóa sẽ không phục hồi được đâu ông già, Xác nhận xóa?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    deleteProduct(id);
+                    swal("Xóa thành công", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    }
+
+</script>
 
 </html>
-
-

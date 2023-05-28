@@ -267,8 +267,11 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Author</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Content</th>
+                                    
+                                    
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Image</th>
@@ -278,8 +281,9 @@
                             <tbody>
                                 {{#each products}}
                                 <tr>
-                                    <td>{{this.author}}</td>
                                     <td>{{this.name}}</td>
+                                    <td>{{this.author}}</td>
+                                    <td>{{this.content}}</td>
                                     <td>{{this.price}}</td>
                                     <td>{{this.category}}</td>
                                     <td>

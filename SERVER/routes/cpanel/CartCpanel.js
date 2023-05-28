@@ -1,51 +1,20 @@
 var express = require('express');
 var router = express.Router();
-const productController = require('../../components/products/ProductController');
+const cartController = require('../../components/carts/CartController');
 const userController = require('../../components/users/UserController');
-const categoryController = require('../../components/category/CategoryController');
-const uploadFile = require('../../middle/UploadFile');
-const CONFIG = require('../../config/Config');
 
-
-//firebase
-const firebaseAdmin = require('firebase-admin');
-const { v4: uuidv4 } = require('uuid');
-const uuid = uuidv4();
-// change the path of json file
-const serviceAccount = require('../../bookapp-f06b4-firebase-adminsdk-45n3b-c2b1712615.json');
-//intialize
-const admin = firebaseAdmin.initializeApp({
-    credential: firebaseAdmin.credential.cert(serviceAccount),
-});
-//create storage refence
-const storageRef = admin.storage().bucket(`gs://bookapp-f06b4.appspot.com`);
-
-async function uploadFiles(path, filename) {
-
-    // Upload the File
-    const storage = await storageRef.upload(path, {
-        public: true,
-        destination: `/uploads/hashnode/${filename}`,
-        metadata: {
-            firebaseStorageDownloadTokens: uuidv4(),
-        }
-    });
-    console.log(storage[0].metadata);
-    console.log(storage[0].metadata.selfLink);
-    console.log(storage[0].metadata.mediaLink);
-    return storage[0].metadata.mediaLink;
-}
-
-
-
-
-
-
-//localhost:3000/cpanel/product
+//localhost:3000/cpanel/cart
 router.get('/', async (req, res, next) => {
     //hien thi trang danh sach sp
-    const products = await productController.getAllProducts();
-    res.render('product/list', { products });
+    const carts = [await cartController.getAllCarts()];
+    const users = await userController.getAllUsers();
+    let data;
+    for(let i=1;i<=carts.length;i++){
+        if(carts[i.id_user==users[i].id]){
+            data += carts[i];
+        }
+    }
+    res.render('product/list', { carts });
     //     const users = await userController.getAllUsers();
     // res.render('product/list', { users });
 });
@@ -95,17 +64,12 @@ router.post('/testUploadImage', [uploadFile.single('image'),], async (req, res, 
     try {
         let image;
         let { body, file } = req;
-        
+        console.log("Hinh ne: ", file);
         (async () => {
             image = await uploadFiles(file.path, file.filename);
-            console.log(" link Hinh ne:",image);
+            //console.log(image);
         })();
-        // body = { ...body, image: image }
-        let { name,author,content, price, category } = body;
-        let product =await productController
-            .addNewProduct(name,author,content, price, image, category);
-        console.log(product);
-        return res.redirect('/cpanel/product');
+
     } catch (error) {
         console.log('Add new product error: ', error)
         next(error);
