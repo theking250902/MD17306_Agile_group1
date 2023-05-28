@@ -3,7 +3,7 @@ import React from 'react';
 
 const Profile = () => {
   return (
-    <View style={{backgroundColor:'#F5F5F5'}}>
+    <View style={{backgroundColor:'#DDDDDD'}}>
       <Pressable style={styles.chien1}>
         <Image source={require('../icon/ic_UserAvatarIcon.png')}></Image>
       </Pressable>
@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
   chien1: {
     height: 150,
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#8983CC',
   },
   chien2: {
     flexDirection: 'row',
     marginTop: 5,
     marginLeft: 10,
-    backgroundColor: '#2222',
+    backgroundColor: '#F5F5F5',
   },
   text1: {
     marginTop: 10,
