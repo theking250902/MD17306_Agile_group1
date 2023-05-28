@@ -1,9 +1,13 @@
 
-
 import React from 'react';
 import {
    View,Text
 } from 'react-native';
+
+import AboutUs from './ttchien/file/AboutUs';
+import ContactUs from './ttchien/file/ContactUs';
+import Profile from './ttchien/file/Profile';
+
 
 
 
@@ -12,7 +16,7 @@ import {
 const App = () => {
  return(
   <View>
-    <Text>hello</Text>
+  <Profile/>
   </View>
  )
 };
