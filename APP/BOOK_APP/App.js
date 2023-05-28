@@ -8,12 +8,13 @@ import Home from './LongVu/Home';
 import ItemBook from './LongVu/ItemBook';
 import Book from './LongVu/Book';
 import ItemDetails from './LongVu/ItemDetails';
+import ItemCart from './LongVu/ItemCart';
 
 const App = () => {
  return(
   <View>
     {/* <Home></Home> */}
-    <ItemDetails></ItemDetails>
+    <ItemCart></ItemCart>
   </View>
  )
 };
