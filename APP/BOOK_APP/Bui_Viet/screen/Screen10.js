@@ -17,7 +17,7 @@ const Screen10 = () => {
         <Text style={styles.fn} >Email</Text>
         <TextInput style={styles.txt} placeholder='ross_galler10@gmail.com'></TextInput>
         <View style={styles.chi}></View>
-        <Text style={styles.fn} >Mopile number</Text>
+        <Text style={styles.fn} >Mobile number</Text>
         <TextInput style={styles.txt} placeholder='null'></TextInput>
         <View style={styles.chi}></View>
         <View style={{flexDirection:'row',marginTop:20,marginLeft:20}}>
