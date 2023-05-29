@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 const Login = () => {
@@ -6,17 +6,19 @@ const Login = () => {
     <View>
       <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
 
-      <TextInput placeholder='   User name' style={styles.TextInput1}>
-        <Text />
+      <TextInput placeholder='User name' style={styles.TextInput1}>
+        <Text style={{
+          marginStart: 100
+        }} />
       </TextInput>
 
-      <TextInput placeholder='   Password' style={styles.TextInput2}>
+      <TextInput placeholder='Password' style={styles.TextInput2}>
         <Text/>
       </TextInput>
 
-      <Pressable style={styles.Press}>
+      <TouchableOpacity style={styles.Press}>
         <Text style={styles.TextNut}>Log in</Text>
-      </Pressable>
+      </TouchableOpacity>
 
       <Text style={styles.Text1}>Forgetten password?</Text>
 
@@ -45,12 +47,13 @@ const styles = StyleSheet.create({
   TextInput1: {
     position: 'absolute',
     height: 40,
-    width: 200,
+    width: 190,
     marginTop: 344,
     borderWidth: 1,
-    borderRadius: 270,
+    borderColor:'#00000087',
+    borderRadius: 50,
     marginStart: 90,
-    marginLeft:90
+    marginLeft:90,
   },
   TextUser: {
     fontFamily: 'Hind Siliguri',
@@ -66,8 +69,9 @@ const styles = StyleSheet.create({
   TextInput2: {
     position: 'absolute',
     height: 40,
-    width: 200,
+    width: 190,
     marginTop: 396,
+    borderColor:'#00000087',
     borderWidth: 1,
     borderRadius: 270,
     marginStart: 90,
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
     marginTop: 459,
     marginStart: 88,
     height:28,
-    width:200,
+    width:190,
     backgroundColor:'#5B5D8B',
     borderRadius:45,
     justifyContent:'center',
