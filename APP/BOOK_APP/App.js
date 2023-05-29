@@ -1,23 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Screen9 from './Bui_Viet/screen/Screen9';
-import Screen10 from './Bui_Viet/screen/Screen10';
-import Screen36 from './Bui_Viet/screen/Screen36';
-export default class App extends React.Component {
-   render() {
-      return (
-         <View style = {styles.container}>
-            <Screen36/>
-         </View>
-      );
-   }
-}
+import { AppContextProvider } from './util/AppContext';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './util/AppNavigator';
+import { AppContext } from './util/AppContext';
+const App = () => {
+   return (
+     <AppContextProvider>
+       <NavigationContainer styles={styles.container}>
+         <AppNavigator />
+       </NavigationContainer>
+     </AppContextProvider>
+   );
+ };
 
 const styles = StyleSheet.create({
    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      flex: 1
    },
 });
+export default App;
