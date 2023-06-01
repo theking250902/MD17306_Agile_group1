@@ -1,7 +1,12 @@
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
+import Home from '../LongVu/Home';
+const Login = (props) => {
+  const {navigation} = props;
 
-const Login = () => {
+  const DangNhap = () =>{
+    navigation.navigate('Home')
+  }
   return (
     <View>
       <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
@@ -16,7 +21,7 @@ const Login = () => {
         <Text/>
       </TextInput>
 
-      <TouchableOpacity style={styles.Press}>
+      <TouchableOpacity onPress={DangNhap} style={styles.Press}>
         <Text style={styles.TextNut}>Log in</Text>
       </TouchableOpacity>
 

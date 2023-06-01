@@ -22,6 +22,7 @@ const Users = () => {
       <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Thongtin" component={Thongtin} />
+      <Stack.Screen name="Home" component={Home} />
       {/* <Tab.Screen name="ListView" component={ListView}></Tab.Screen> */}
   </Stack.Navigator>
   )

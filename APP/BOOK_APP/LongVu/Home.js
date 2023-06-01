@@ -4,6 +4,7 @@ import ItemHome from './ItemHome';
 
 const Home = (props) => {
     // const [dataNe, setdataNe] = useState([]);
+    const {navigation} = props;
     return (
         <ScrollView >
             <View style={{ flexDirection: 'row' }}>
