@@ -4,17 +4,23 @@ import React from 'react'
 const ResetPass = () => {
   return (
     <View>
-        <Text style={styles.Text1}>Reset password</Text>
+        <Text  style={styles.Text1}>Reset password</Text>
 
-        <TextInput style={styles.Text2}>Password</TextInput>
+        <TextInput placeholder='Password' style={styles.Text2}>
+        <Text />
+        </TextInput>
 
         <Image style={styles.Line1} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput style={styles.Text3}>New password</TextInput>
+        <TextInput placeholder='New password' style={styles.Text3}>
+            <Text/>
+        </TextInput>
 
         <Image style={styles.Line2} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput style={styles.Text4}>Confirm password</TextInput>
+        <TextInput placeholder='Confirm password' style={styles.Text4}>
+            <Text/>
+        </TextInput>
 
         <Image style={styles.Line3} source={require('../TranThuc/images/Line23.png')}/>
 
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     },
     Line1: {
         position: 'absolute',
-        marginTop: 288,
+        marginTop: 290,
         width: 400,
     },
     Line2: {
@@ -96,7 +102,7 @@ const styles = StyleSheet.create({
     },
     Line3: {
         position: 'absolute',
-        marginTop: 415,
+        marginTop: 420,
         width: 400,
     },
     Press:{

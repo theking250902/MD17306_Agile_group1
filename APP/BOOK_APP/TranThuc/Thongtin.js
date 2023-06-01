@@ -1,32 +1,40 @@
-import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const Thongtin = () => {
+const Thongtin = (props) => {
+    const { navigation } = props;
+
+    const Login = () => {
+        navigation.navigate('Login')
+      }
   return (
     <View>
     <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
 
-    <TextInput style={styles.TextInput1}>
-        <Text style={styles.TextUser}>First name</Text>
+    <TextInput placeholder='Full name' style={styles.TextInput1}>
+        <Text/>
     </TextInput>
 
-    <TextInput style={styles.TextInput2}>
-        <Text style={styles.TextUser}>Last name</Text>
+    <TextInput placeholder='E-mail' style={styles.TextInput2}>
+        <Text/>
     </TextInput>
 
-    <TextInput style={styles.TextInput3}>
-        <Text style={styles.TextUser}>e-mail</Text>
-    </TextInput>
-
-    <TextInput style={styles.TextInput4}>
-        <Text style={styles.TextUser}>Password</Text>
+    <TextInput placeholder='Pass word' style={styles.TextInput3}>
+        <Text/>
     </TextInput>
 
     <Pressable style={styles.Press}>
         <Text style={styles.TextNut}>Log in</Text>
     </Pressable>
 
-    <Text style={styles.Text}>Already have an account  ? Log in</Text>
+
+    <View style={{ flexDirection: 'row' }}>
+        <Text style={styles.Text3}>Already have an account?</Text>
+        <TouchableOpacity onPress={Login}>
+        <Text style={styles.Text4}>Log in</Text>
+        </TouchableOpacity>
+    </View>
+
     </View>
   )
 }
@@ -41,50 +49,46 @@ const styles = StyleSheet.create({
     },
     TextInput1: {
         position: 'absolute',
-        height: 40,
-        width: 200,
-        marginTop: 344,
+        height: 45,
+        width: 300,
+        marginTop: 330,
         borderWidth: 1,
-        borderRadius: 270,
-        marginStart: 90,
+        borderColor: '#00000087',
+        borderRadius: 17,
+        marginStart: 45
+
     },
     TextInput2: {
         position: 'absolute',
-        height: 40,
-        width: 200,
-        marginTop: 403,
+        height: 45,
+        width: 300,
+        marginTop: 400,
         borderWidth: 1,
-        borderRadius: 270,
-        marginStart: 90,
+        borderColor: '#00000087',
+        borderRadius: 17,
+        marginStart: 45
+
     },
     TextInput3: {
         position: 'absolute',
-        height: 40,
-        width: 200,
-        marginTop: 462,
+        height: 45,
+        width: 300,
+        marginTop: 470,
         borderWidth: 1,
-        borderRadius: 270,
-        marginStart: 90,
+        borderColor: '#00000087',
+        borderRadius: 17,
+        marginStart: 45
     },
-    TextInput4: {
+    Press: {
         position: 'absolute',
+        marginTop: 540,
+        marginStart: 114,
         height: 40,
-        width: 200,
-        marginTop: 521,
-        borderWidth: 1,
-        borderRadius: 270,
-        marginStart: 90,
-    },
-    Press:{
-        position: 'absolute',
-        marginTop: 606,
-        marginStart: 88,
-        height:28,
-        width:200,
-        backgroundColor:'#5B5D8B',
-        borderRadius:45,
-        justifyContent:'center',
-        alignItems:'center'
+        width: 150,
+        backgroundColor: '#5B5D8B',
+        borderRadius: 17,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     TextNut: {
         position: 'absolute',
@@ -106,4 +110,29 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#000000',
     },
+    Text3: {
+        position: 'absolute',
+        marginTop: 650,
+        marginStart: 87,
+        fontFamily: 'Hind Siliguri',
+        fontSize: 15,
+        fontStyle: 'normal',
+        fontWeight: '400',
+        lineHeight: 16,
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center',
+        color: '#000000',
+      },
+      Text4: {
+        marginTop: 650,
+        fontFamily: 'Hind Siliguri',
+        fontSize: 15,
+        fontStyle: 'normal',
+        fontWeight: '400',
+        lineHeight: 16,
+        color: '#000000',
+        position: 'absolute',
+        marginLeft: 265
+      },
 })

@@ -171,10 +171,10 @@ const styles = StyleSheet.create({
   },
   Text3: {
     position: 'absolute',
-    marginTop: 700,
-    marginStart: 87,
+    marginTop: 650,
+    marginStart: 82,
     fontFamily: 'Hind Siliguri',
-    fontSize: 13,
+    fontSize: 15,
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 16,
@@ -184,15 +184,15 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   Text4: {
-    marginTop: 700,
+    marginTop: 650,
     fontFamily: 'Hind Siliguri',
-    fontSize: 13,
+    fontSize: 15,
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 16,
     color: '#000000',
     position: 'absolute',
-    marginLeft: 245
+    marginLeft: 265
   },
 
 
