@@ -3,9 +3,10 @@ import React, {useContext} from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import { AppContext} from './AppContext';
 import Login from '../TranThuc/Login';
+
 import ResetPass from '../TranThuc/ResetPass';
 import Home from '../LongVu/Home';
 import ItemCart from '../LongVu/ItemCart';
@@ -44,24 +45,6 @@ const Mains = () => {
 const News = () => {
   return(
       <Tab.Navigator 
-      // screenOptions={({route}) => ({
-      //               tabBarIcon: ({ }) => {
-      //                 if (route.name === 'Mains') {
-      //                   return <Image source={require('../src/home1.png')} />
-      //                 }else if(route.name === 'ItemDetails'){
-      //                   return <Image source={require('../src/user.png')} />
-      //               }
-      //                  else if (route.name === 'Cart') {
-      //                   return <Image source={require('../src/export.png')} />
-      //                 }else if(route.name === 'Profile'){
-      //                     return <Image source={require('../src/user.png')} />
-      //                 }
-      //               },
-      //               tabBarActiveTintColor: 'blue',
-      //               tabBarInactiveTintColor: 'black',
-      //             //   tab: 'blue',
-      //               headerShown: false
-      //             })}
       screenOptions={({ route }) => ({
           headerShown:false,
           tabBarIcon: ({ focused, color, size }) => {
