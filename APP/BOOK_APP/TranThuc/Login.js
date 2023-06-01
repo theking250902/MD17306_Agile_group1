@@ -10,7 +10,15 @@ const Login = (props) => {
   return (
     <View>
       <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
-
+      <Text style={{
+        position: 'absolute',
+        marginLeft: 127,
+        marginTop: 230,
+        fontSize: 25, 
+        fontWeight: '600',
+        fontStyle: 'normal',
+        color: '#5B5D8B'
+      }}>BOOK APP</Text>
       <TextInput placeholder='User name' style={styles.TextInput1}>
         <Text style={{
           marginStart: 100
@@ -46,19 +54,19 @@ export default Login
 const styles = StyleSheet.create({
   Logo: {
     position: 'absolute',
-    marginTop: 186,
+    marginTop: 105,
     marginStart: 115,
   },
   TextInput1: {
     position: 'absolute',
-    height: 40,
-    width: 190,
-    marginTop: 344,
+    height: 45,
+    width: 300,
+    marginTop: 330,
     borderWidth: 1,
     borderColor:'#00000087',
-    borderRadius: 50,
-    marginStart: 90,
-    marginLeft:90,
+    borderRadius: 17,
+    marginStart: 45
+
   },
   TextUser: {
     fontFamily: 'Hind Siliguri',
@@ -73,13 +81,13 @@ const styles = StyleSheet.create({
   },
   TextInput2: {
     position: 'absolute',
-    height: 40,
-    width: 190,
-    marginTop: 396,
+    height: 45,
+    width: 300,
+    marginTop: 395,
     borderColor:'#00000087',
     borderWidth: 1,
-    borderRadius: 270,
-    marginStart: 90,
+    borderRadius: 17,
+    marginStart: 45,
   },
   TextPass: {
     fontFamily: 'Hind Siliguri',
@@ -95,11 +103,11 @@ const styles = StyleSheet.create({
   Press:{
     position: 'absolute',
     marginTop: 459,
-    marginStart: 88,
-    height:28,
-    width:190,
+    marginStart: 114,
+    height:40,
+    width:150,
     backgroundColor:'#5B5D8B',
-    borderRadius:45,
+    borderRadius: 17,
     justifyContent:'center',
     alignItems:'center'
 },
@@ -107,13 +115,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color:'#FFFFFF',
     fontSize:17,
+    fontWeight: '600',
     fontFamily: 'Hind Siliguri',
+    fontStyle: 'normal'
   },
 
   Text1: {
     position: 'absolute',
-    marginTop: 501,
-    marginStart: 110,
+    marginTop: 520,
+    marginStart: 117,
     fontFamily: 'Hind Siliguri',
     fontSize: 15,
     fontStyle: 'normal',
@@ -126,8 +136,8 @@ const styles = StyleSheet.create({
   },
   Text2: {
     position: 'absolute',
-    marginTop: 547,
-    marginStart: 132,
+    marginTop: 555,
+    marginStart: 141,
     fontFamily: 'Hind Siliguri',
     fontSize: 13,
     fontStyle: 'normal',
@@ -155,7 +165,7 @@ const styles = StyleSheet.create({
   },
   Text3: {
     position: 'absolute',
-    marginTop: 680,
+    marginTop: 700,
     marginStart: 87,
     fontFamily: 'Hind Siliguri',
     fontSize: 13,
