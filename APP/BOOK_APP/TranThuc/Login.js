@@ -2,10 +2,13 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, Toucha
 import React from 'react'
 import Home from '../LongVu/Home';
 const Login = (props) => {
-  const {navigation} = props;
+  const { navigation } = props;
 
-  const DangNhap = () =>{
+  const DangNhap = () => {
     navigation.navigate('Home')
+  }
+  const DangKyNe = () => {
+    navigation.navigate('Thongtin')
   }
   return (
     <View>
@@ -14,7 +17,7 @@ const Login = (props) => {
         position: 'absolute',
         marginLeft: 127,
         marginTop: 230,
-        fontSize: 25, 
+        fontSize: 25,
         fontWeight: '600',
         fontStyle: 'normal',
         color: '#5B5D8B'
@@ -26,7 +29,7 @@ const Login = (props) => {
       </TextInput>
 
       <TextInput placeholder='Password' style={styles.TextInput2}>
-        <Text/>
+        <Text />
       </TextInput>
 
       <TouchableOpacity onPress={DangNhap} style={styles.Press}>
@@ -36,15 +39,18 @@ const Login = (props) => {
       <Text style={styles.Text1}>Forgetten password?</Text>
 
       <Text style={styles.Text2}>-Or sign in with-</Text>
-      
+
       <Image style={styles.Google} source={require('../TranThuc/images/Google.png')}></Image>
 
       <Image style={styles.Facebook} source={require('../TranThuc/images/Facebook.png')}></Image>
 
       <Image style={styles.Twitter} source={require('../TranThuc/images/Twitter.png')}></Image>
-
-      <Text style={styles.Text3}>don't have an account yet ?  Sign up </Text>
-
+      <View style={{ flexDirection: 'row' }}>
+        <Text style={styles.Text3}>don't have an account yet?</Text>
+        <TouchableOpacity onPress={DangKyNe}>
+        <Text style={styles.Text4}>Sign up</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -63,7 +69,7 @@ const styles = StyleSheet.create({
     width: 300,
     marginTop: 330,
     borderWidth: 1,
-    borderColor:'#00000087',
+    borderColor: '#00000087',
     borderRadius: 17,
     marginStart: 45
 
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
     height: 45,
     width: 300,
     marginTop: 395,
-    borderColor:'#00000087',
+    borderColor: '#00000087',
     borderWidth: 1,
     borderRadius: 17,
     marginStart: 45,
@@ -100,21 +106,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#000000',
   },
-  Press:{
+  Press: {
     position: 'absolute',
     marginTop: 459,
     marginStart: 114,
-    height:40,
-    width:150,
-    backgroundColor:'#5B5D8B',
+    height: 40,
+    width: 150,
+    backgroundColor: '#5B5D8B',
     borderRadius: 17,
-    justifyContent:'center',
-    alignItems:'center'
-},
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   TextNut: {
     position: 'absolute',
-    color:'#FFFFFF',
-    fontSize:17,
+    color: '#FFFFFF',
+    fontSize: 17,
     fontWeight: '600',
     fontFamily: 'Hind Siliguri',
     fontStyle: 'normal'
@@ -176,6 +182,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     color: '#000000',
+  },
+  Text4: {
+    marginTop: 700,
+    fontFamily: 'Hind Siliguri',
+    fontSize: 13,
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: 16,
+    color: '#000000',
+    position: 'absolute',
+    marginLeft: 245
   },
 
 
