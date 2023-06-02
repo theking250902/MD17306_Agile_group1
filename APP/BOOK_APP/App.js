@@ -4,13 +4,15 @@ import { AppContextProvider } from './util/AppContext';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './util/AppNavigator';
 import { AppContext } from './util/AppContext';
+import Welcome from './TranThuc/Welcome';
 const App = () => {
    return (
-     <AppContextProvider>
-       <NavigationContainer styles={styles.container}>
-         <AppNavigator />
-       </NavigationContainer>
-     </AppContextProvider>
+    //  <AppContextProvider>
+    //    <NavigationContainer styles={styles.container}>
+    //      <AppNavigator />
+    //    </NavigationContainer>
+    //  </AppContextProvider>
+    <Welcome/>
    );
  };
 
