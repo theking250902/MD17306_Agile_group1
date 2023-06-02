@@ -1,11 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
+import ItemDetails from './ItemDetails';
 
 const ItemBook = (props) => {
-    const { products } = props;
+    const { products, navigation } = props;
+    const ClickDetail = () =>{
+        navigation.navigate('ItemDetails')
+    }
   return (
-    <TouchableOpacity>
+    <View >
       <View style={styles.container}>
+        <TouchableOpacity onPress={ClickDetail}>
             <Image style={{
                 width: 116.98,
                 height: 200,
@@ -13,6 +18,7 @@ const ItemBook = (props) => {
                 borderColor: '#ADB3BC',
                 marginLeft: 11
             }} source={{ uri: products.image}}></Image>
+            </TouchableOpacity>
             <Text style={{
                 fontSize: 18,
                 fontWeight: '600',
@@ -42,7 +48,7 @@ const ItemBook = (props) => {
                 marginTop: 175
             }} source={require('./images/giohang.png')}></Image>
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 

@@ -17,6 +17,7 @@ import ListView from '../LongVu/Home'
 import Register from '../TranThuc/Register';
 import Icon from 'react-native-ionicons';
 import ItemHome from '../LongVu/ItemHome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
