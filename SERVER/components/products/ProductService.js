@@ -9,12 +9,9 @@ const getAllProducts = async (size, page) => {
     }
     return [];
 }
-// const getAllProducts2 = async (size, page) => {
+// const getAllProducts = async (size, page) => {
 //     try {
-//         return await productModel
-//         .find({},'name price') // lay 2 cot name va price
-//         .populate('category') // lay category
-//         .sort({price:-1}) // sap xep theo gia tang dan
+//         return await productModel.populate('category') // lay category
 //         //.skip(2) // bo qua 2 sp dau
 //     } catch (error) {
 //         console.log("getAllProducts error: " + error);
@@ -35,14 +32,10 @@ const deleteProductById = async (id) => {
     return false;
 
 }
-const addNewProduct = async (name, price, quantity, image, category) => {
+const addNewProduct = async (name,author,content,price,image,category) => {
     try {
         const newProduct = {
-            name,
-            price,
-            quantity,
-            image,
-            category
+            name,author,content,price,image,category
         }
         await productModel.create(newProduct);
         return true;
@@ -55,13 +48,14 @@ const addNewProduct = async (name, price, quantity, image, category) => {
 
 }
 //update sp
-const updateProduct = async (id, name, price, quantity, image, category) => {
+const updateProduct = async (id, name,author,content,price,image,category) => {
     try {
         let item = await productModel.findById(id);
         if (item) {
             item.name = name ? name : item.name;
+            item.author = author ? author : item.author;
+            item.content = content ? content : item.content;
             item.price = price ? price : item.price;
-            item.quantity = quantity ? quantity : item.quantity;
             item.image = image ? image : item.image;
             item.category = category ? category : item.category;
             await item.save();

@@ -255,7 +255,7 @@
 
     <main id="main" class="main">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-11">
                 <div class="card">
                     <div class="card-title">
                         {{!-- <a href="/cpanel/product/new" class="text-white btn btn-primary">Insert New</a> --}}
@@ -267,24 +267,26 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Content</th>
                                     <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{#each products}}
                                 <tr>
-                                    <td>{{this._id}}</td>
                                     <td>{{this.name}}</td>
+                                    <td>{{this.author}}</td>
+                                    <td>{{this.content}}</td>
                                     <td>{{this.price}}</td>
-                                    <td>{{this.quantity}}</td>
                                     <td>
                                         <img style="width: 80px;height: 50px;" src="{{this.image}}">
                                     </td>
+                                    <td>{{this.category.name}}</td>
                                     <td>
                                         <a href="/cpanel/product/{{this._id}}/edit" class="btn btn-primary">Edit</a>
                                         <a onclick="confirmDelete('{{this._id}}');" class="btn btn-danger">Delete</a>
