@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TextInput, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const Thongtin = (props) => {
+const Register = (props) => {
     const { navigation } = props;
 
     const Login = () => {
@@ -39,7 +39,7 @@ const Thongtin = (props) => {
   )
 }
 
-export default Thongtin
+export default Register
 
 const styles = StyleSheet.create({
     Logo: {
