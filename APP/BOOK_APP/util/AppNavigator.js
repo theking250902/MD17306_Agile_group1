@@ -14,8 +14,9 @@ import Profile from '../ttchien/file/Profile';
 import Cart from '../LongVu/Cart';
 import ItemDetails from '../LongVu/ItemDetails';
 import ListView from '../LongVu/Home'
-import Thongtin from '../TranThuc/Thongtin';
+import Register from '../TranThuc/Register';
 import Icon from 'react-native-ionicons';
+import ItemHome from '../LongVu/ItemHome';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +24,7 @@ const Users = () => {
   return (
     <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Thongtin" component={Thongtin} />
+      <Stack.Screen name="Register" component={Register} />
       <Tab.Screen name="Home" component={Home}></Tab.Screen>
     </Stack.Navigator>
   )
@@ -33,7 +34,7 @@ const Mains = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name='ItemCart' component={ItemCart} />
+      <Stack.Screen name='ItemHome' component={ItemHome} />
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
@@ -51,10 +52,10 @@ const News = () => {
 
           if (route.name === 'Mains') {
             iconName = focused
-              ? 'ios-home'
-              : 'ios-home';
+              ? 'home'
+              : 'home';
           } else if (route.name === 'ItemDetails') {
-            iconName = focused ? 'compass-outline' : 'compass-outline';
+            iconName = focused ? 'home' : 'home';
           }
           else if (route.name === 'Cart') {
             iconName = focused ? 'albums-outline' : 'albums-outline';

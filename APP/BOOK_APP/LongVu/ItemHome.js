@@ -3,6 +3,7 @@ import React from 'react'
 
 const ItemHome = (props) => {
   const { products } = props;
+  const { navigation } = props;
   return (
     <TouchableOpacity>
         <View style={{ flexDirection: 'row'}}>

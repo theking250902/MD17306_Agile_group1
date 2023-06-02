@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import ItemHome from './ItemHome';
-
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 const Home = (props) => {
     // const [dataNe, setdataNe] = useState([]);
     const {navigation} = props;
@@ -69,8 +69,9 @@ const Home = (props) => {
             <View style={{ flexDirection: 'row' }}>
                 <FlatList
                     numColumns={3}
+                    keyboardShouldPersistTaps='always'
                     data={dataNe}
-                    renderItem={({ item }) => <ItemHome products={item} />}
+                    renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
                     keyExtractor={item => item._id}
                     showsVerticalScrollIndicator={false}
                 />
