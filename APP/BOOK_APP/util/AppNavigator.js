@@ -46,19 +46,21 @@ const News = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({}) => {
+        tabBarLabelStyle:({fontSize:0}),
+        tabBarStyle:({height:80}),
+        tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
           if (route.name === 'Mains') {
-            return <Image source={require('../src/home1.png')} />
-          } else if (route.name === 'ItemDetails') {
-            return <Image source={require('../src/home1.png')} />
+            return <Image style={styles.iconTab} source={require('../src/home-outline.png')} />
+          } else if (route.name === 'Cart') {
+            return <Image style={styles.iconTab} source={require('../src/notifications.png')} />
           }
-          else if (route.name === 'Cart') {
-            return <Image source={require('../src/home1.png')} />
+          else if (route.name === 'ItemDetails') {
+            return <Image style={styles.iconTab} source={require('../src/cart.png')} />
           }
           else if (route.name === 'Profile') {
-            return <Image source={require('../src/home1.png')} />
+            return <Image style={styles.iconTab} source={require('../src/user-inline.png')} />
           }
 
           },
@@ -66,10 +68,11 @@ const News = () => {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-      <Tab.Screen name="Mains" component={Mains} options={{title: "Home"}}></Tab.Screen>
-      <Tab.Screen name="ItemDetails" component={ItemDetails} options={{title: "ItemDetails"}}></Tab.Screen>
-      <Tab.Screen name="Cart" component={Cart} options={{title: "Cart"}}></Tab.Screen>
-      <Tab.Screen name="Profile" component={Profile} options={{title: "Profile"}}></Tab.Screen>
+      <Tab.Screen name="Mains" component={Mains} ></Tab.Screen>
+      <Tab.Screen name="Cart" component={Cart} ></Tab.Screen>
+      <Tab.Screen name="ItemDetails" component={ItemDetails} ></Tab.Screen>
+
+      <Tab.Screen name="Profile" component={Profile} ></Tab.Screen>
       
   </Tab.Navigator>
 
@@ -89,4 +92,6 @@ const AppNavigator = () => {
 
 export default AppNavigator
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  iconTab:{width:44,height:38}
+})
