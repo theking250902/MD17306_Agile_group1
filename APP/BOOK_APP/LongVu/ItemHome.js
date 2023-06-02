@@ -3,10 +3,11 @@ import React from 'react'
 import ItemDetails from './ItemDetails';
 const ItemHome = (props) => {
   const { products } = props;
-  const {navigation} = props;
   const ClickDetail = () =>{
     navigation.navigate('ItemDetails')
 }
+  const { navigation } = props;
+
   return (
     <TouchableOpacity onPress={ClickDetail}>
         <View style={{ flexDirection: 'row'}}>

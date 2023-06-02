@@ -1,56 +1,75 @@
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity ,Alert} from 'react-native'
 import React from 'react'
-import Home from '../LongVu/Home';
-const Login = (props) => {
-  const { navigation } = props;
+import { useState ,useContext} from 'react'
+import { AppContext } from '../util/AppContext'
 
-  const DangNhap = () => {
-    navigation.navigate('Home')
+
+const Login = (props) => {
+  const [email,setEmail]=useState("");
+  const {isLogin,setIsLogin}= useContext(AppContext)
+  const [password,setPassword]=useState("");
+  const {navigation} = props;
+  const showAlert =(mess)=>{
+    Alert.alert(
+      'Thông báo',
+      mess,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            'This alert was dismissed by tapping outside of the alert dialog.',
+          ),
+      },
+    );
   }
-  const DangKyNe = () => {
-    navigation.navigate('Thongtin')
+  const onClick =() =>{
+    if(email.length<=0){
+      showAlert("Vui lòng nhập username")
+    }
+    else if(password.length<=0){
+      showAlert("Vui lòng nhập password")
+    }
+    if(email=="admin" && password=="admin"){
+      // navigation.navigate('Home');
+      setIsLogin(true)
+    }
   }
   return (
     <View>
       <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
-      <Text style={{
-        position: 'absolute',
-        marginLeft: 127,
-        marginTop: 230,
-        fontSize: 25,
-        fontWeight: '600',
-        fontStyle: 'normal',
-        color: '#5B5D8B'
-      }}>BOOK APP</Text>
-      <TextInput placeholder='User name' style={styles.TextInput1}>
+
+      <TextInput placeholder='User name' onChangeText={setEmail} style={styles.TextInput1}>
         <Text style={{
           marginStart: 100
         }} />
       </TextInput>
 
-      <TextInput placeholder='Password' style={styles.TextInput2}>
-        <Text />
+      <TextInput placeholder='Password' onChangeText={setPassword} style={styles.TextInput2}>
+        <Text/>
       </TextInput>
 
-      <TouchableOpacity onPress={DangNhap} style={styles.Press}>
+      <TouchableOpacity onPress={()=>onClick()} style={styles.Press}>
         <Text style={styles.TextNut}>Log in</Text>
       </TouchableOpacity>
 
       <Text style={styles.Text1}>Forgetten password?</Text>
 
       <Text style={styles.Text2}>-Or sign in with-</Text>
-
+      
       <Image style={styles.Google} source={require('../TranThuc/images/Google.png')}></Image>
 
       <Image style={styles.Facebook} source={require('../TranThuc/images/Facebook.png')}></Image>
 
       <Image style={styles.Twitter} source={require('../TranThuc/images/Twitter.png')}></Image>
-      <View style={{ flexDirection: 'row' }}>
-        <Text style={styles.Text3}>don't have an account yet?</Text>
-        <TouchableOpacity onPress={DangKyNe}>
-        <Text style={styles.Text4}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
+
+      <Text style={styles.Text3}>don't have an account yet ?  Sign up </Text>
+
     </View>
   )
 }
@@ -60,19 +79,19 @@ export default Login
 const styles = StyleSheet.create({
   Logo: {
     position: 'absolute',
-    marginTop: 105,
+    marginTop: 186,
     marginStart: 115,
   },
   TextInput1: {
     position: 'absolute',
-    height: 45,
-    width: 300,
-    marginTop: 330,
+    height: 40,
+    width: 190,
+    marginTop: 344,
     borderWidth: 1,
-    borderColor: '#00000087',
-    borderRadius: 17,
-    marginStart: 45
-
+    borderColor:'#00000087',
+    borderRadius: 50,
+    marginStart: 90,
+    marginLeft:90,
   },
   TextUser: {
     fontFamily: 'Hind Siliguri',
@@ -87,13 +106,13 @@ const styles = StyleSheet.create({
   },
   TextInput2: {
     position: 'absolute',
-    height: 45,
-    width: 300,
-    marginTop: 395,
-    borderColor: '#00000087',
+    height: 40,
+    width: 190,
+    marginTop: 396,
+    borderColor:'#00000087',
     borderWidth: 1,
-    borderRadius: 17,
-    marginStart: 45,
+    borderRadius: 270,
+    marginStart: 90,
   },
   TextPass: {
     fontFamily: 'Hind Siliguri',
@@ -106,30 +125,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#000000',
   },
-  Press: {
+  Press:{
     position: 'absolute',
     marginTop: 459,
-    marginStart: 114,
-    height: 40,
-    width: 150,
-    backgroundColor: '#5B5D8B',
-    borderRadius: 17,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+    marginStart: 88,
+    height:28,
+    width:190,
+    backgroundColor:'#5B5D8B',
+    borderRadius:45,
+    justifyContent:'center',
+    alignItems:'center'
+},
   TextNut: {
     position: 'absolute',
-    color: '#FFFFFF',
-    fontSize: 17,
-    fontWeight: '600',
+    color:'#FFFFFF',
+    fontSize:17,
     fontFamily: 'Hind Siliguri',
-    fontStyle: 'normal'
   },
 
   Text1: {
     position: 'absolute',
-    marginTop: 520,
-    marginStart: 117,
+    marginTop: 501,
+    marginStart: 110,
     fontFamily: 'Hind Siliguri',
     fontSize: 15,
     fontStyle: 'normal',
@@ -142,8 +159,8 @@ const styles = StyleSheet.create({
   },
   Text2: {
     position: 'absolute',
-    marginTop: 555,
-    marginStart: 141,
+    marginTop: 547,
+    marginStart: 132,
     fontFamily: 'Hind Siliguri',
     fontSize: 13,
     fontStyle: 'normal',
@@ -171,10 +188,10 @@ const styles = StyleSheet.create({
   },
   Text3: {
     position: 'absolute',
-    marginTop: 650,
-    marginStart: 82,
+    marginTop: 680,
+    marginStart: 87,
     fontFamily: 'Hind Siliguri',
-    fontSize: 15,
+    fontSize: 13,
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 16,
@@ -182,17 +199,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     color: '#000000',
-  },
-  Text4: {
-    marginTop: 650,
-    fontFamily: 'Hind Siliguri',
-    fontSize: 15,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 16,
-    color: '#000000',
-    position: 'absolute',
-    marginLeft: 265
   },
 
 

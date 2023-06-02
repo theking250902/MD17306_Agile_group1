@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View, } from 'react-native'
-import React, {useContext} from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import { AppContext} from './AppContext';
+import { AppContext } from './AppContext';
 import Login from '../TranThuc/Login';
 
 import ResetPass from '../TranThuc/ResetPass';
@@ -14,41 +13,43 @@ import Book from '../LongVu/Book';
 import Profile from '../ttchien/file/Profile';
 import Cart from '../LongVu/Cart';
 import ItemDetails from '../LongVu/ItemDetails';
-import Thongtin from '../TranThuc/Thongtin';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import ListView from '../LongVu/Home'
+import Register from '../TranThuc/Register';
+import Icon from 'react-native-ionicons';
+import ItemHome from '../LongVu/ItemHome';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Users = () => {
   return (
-      <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Thongtin" component={Thongtin} />
-      <Stack.Screen name="Home" component={Home} />
-      {/* <Tab.Screen name="ListView" component={ListView}></Tab.Screen> */}
-  </Stack.Navigator>
+      <Stack.Screen name="Register" component={Register} />
+      <Tab.Screen name="Home" component={Home}></Tab.Screen>
+    </Stack.Navigator>
   )
 }
 
 const Mains = () => {
   return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name='ItemHome' component={ItemHome} />
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
-      {/* <Tab.Screen name="ListView" component={ListView}></Tab.Screen> */}
-  </Stack.Navigator>
+    </Stack.Navigator>
 
   )
 }
 
 const News = () => {
-  return(
-      <Tab.Navigator 
+  return (
+    <Tab.Navigator
       screenOptions={({ route }) => ({
-          headerShown:false,
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+        headerShown: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
 
             if (route.name === 'Mains') {
               iconName = focused
@@ -72,18 +73,19 @@ const News = () => {
       <Tab.Screen name="Profile" component={Profile} options={{title: "Profile"}}></Tab.Screen>
       
   </Tab.Navigator>
+
   )
 
 }
 const AppNavigator = () => {
-  const {isLogin} = useContext(AppContext);
-    
-    return(
-        <>
-            {isLogin == false ? <Users/> : <News/>}  
-        </>  
+  const { isLogin } = useContext(AppContext);
 
-    ) 
+  return (
+    <>
+      {isLogin == false ? <Users /> : <News />}
+    </>
+
+  )
 }
 
 export default AppNavigator
