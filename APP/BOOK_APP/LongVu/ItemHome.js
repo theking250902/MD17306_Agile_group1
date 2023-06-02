@@ -1,10 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
-
+import ItemDetails from './ItemDetails';
 const ItemHome = (props) => {
   const { products } = props;
+  const {navigation} = props;
+  const ClickDetail = () =>{
+    navigation.navigate('ItemDetails')
+}
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={ClickDetail}>
         <View style={{ flexDirection: 'row'}}>
           <View style={styles.container}>
             <Image style={styles.images} st source={{ uri: products.image }}></Image>
@@ -13,7 +17,6 @@ const ItemHome = (props) => {
             <Text style={styles.mota}>{products.content}</Text>
             <Text style={styles.price}>{products.price}</Text>
           </View>
-
         </View>
     </TouchableOpacity>
   )

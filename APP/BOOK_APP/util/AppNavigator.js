@@ -57,9 +57,6 @@ const News = () => {
             } else if (route.name === 'Book') {
               iconName = focused ? 'compass-outline' : 'compass-outline';
             }            
-            else if (route.name === 'Cart') {
-              iconName = focused ? 'albums-outline' : 'albums-outline';
-            }
             else if (route.name === 'Profile') {
               iconName = focused ? 'person-circle-outline' : 'person-circle-outline';
             }
@@ -71,8 +68,7 @@ const News = () => {
         })}
       >
       <Tab.Screen name="Mains" component={Mains} options={{title: "Home"}}></Tab.Screen>
-      <Tab.Screen name="Book" component={Book} options={{title: "ItemDetails"}}></Tab.Screen>
-      <Tab.Screen name="Cart" component={Cart} options={{title: "Cart"}}></Tab.Screen>
+      <Tab.Screen name="Book" component={Book} options={{title: "Book"}}></Tab.Screen>
       <Tab.Screen name="Profile" component={Profile} options={{title: "Profile"}}></Tab.Screen>
       
   </Tab.Navigator>
