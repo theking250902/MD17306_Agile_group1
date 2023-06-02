@@ -1,10 +1,14 @@
-import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import ItemHome from './ItemHome';
+import ItemDetails from './ItemDetails';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 const Home = (props) => {
     // const [dataNe, setdataNe] = useState([]);
     const {navigation} = props;
+
+
     return (
         <ScrollView >
             <View style={{ flexDirection: 'row' }}>
@@ -51,7 +55,7 @@ const Home = (props) => {
             }}>Recommendation</Text>
 
             <View style={{ flexDirection: 'row' }}>
-                <FlatList
+                <FlatList 
                     numColumns={3}
                     data={dataNe}
                     renderItem={({ item }) => <ItemHome products={item} />}
