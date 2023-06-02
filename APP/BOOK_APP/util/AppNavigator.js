@@ -15,6 +15,7 @@ import Profile from '../ttchien/file/Profile';
 import Cart from '../LongVu/Cart';
 import ItemDetails from '../LongVu/ItemDetails';
 import Thongtin from '../TranThuc/Thongtin';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,6 @@ const Mains = () => {
   return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name='ItemCart' component={ItemCart}/>
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
       {/* <Tab.Screen name="ListView" component={ListView}></Tab.Screen> */}
@@ -54,7 +54,7 @@ const News = () => {
               iconName = focused
                 ? 'ios-home'  
                 : 'ios-home';
-            } else if (route.name === 'ItemDetails') {
+            } else if (route.name === 'Book') {
               iconName = focused ? 'compass-outline' : 'compass-outline';
             }            
             else if (route.name === 'Cart') {
@@ -63,8 +63,6 @@ const News = () => {
             else if (route.name === 'Profile') {
               iconName = focused ? 'person-circle-outline' : 'person-circle-outline';
             }
-          
-
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -73,7 +71,7 @@ const News = () => {
         })}
       >
       <Tab.Screen name="Mains" component={Mains} options={{title: "Home"}}></Tab.Screen>
-      <Tab.Screen name="ItemDetails" component={ItemDetails} options={{title: "ItemDetails"}}></Tab.Screen>
+      <Tab.Screen name="Book" component={Book} options={{title: "ItemDetails"}}></Tab.Screen>
       <Tab.Screen name="Cart" component={Cart} options={{title: "Cart"}}></Tab.Screen>
       <Tab.Screen name="Profile" component={Profile} options={{title: "Profile"}}></Tab.Screen>
       

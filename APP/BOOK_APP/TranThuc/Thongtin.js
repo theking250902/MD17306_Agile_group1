@@ -24,7 +24,7 @@ const Thongtin = (props) => {
     </TextInput>
 
     <Pressable style={styles.Press}>
-        <Text style={styles.TextNut}>Log in</Text>
+        <Text style={styles.TextNut}>Sign up</Text>
     </Pressable>
 
 
