@@ -60,25 +60,15 @@ const News = () => {
           else if (route.name === 'Profile') {
             return <Image source={require('../src/home1.png')} />
           }
-            if (route.name === 'Mains') {
-              iconName = focused
-                ? 'ios-home'  
-                : 'ios-home';
-            } else if (route.name === 'Book') {
-              iconName = focused ? 'compass-outline' : 'compass-outline';
-            }            
-            else if (route.name === 'Profile') {
-              iconName = focused ? 'person-circle-outline' : 'person-circle-outline';
-            }
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
+
           },
           tabBarActiveTintColor: 'blue',
           tabBarInactiveTintColor: 'gray',
         })}
       >
       <Tab.Screen name="Mains" component={Mains} options={{title: "Home"}}></Tab.Screen>
-      <Tab.Screen name="Book" component={Book} options={{title: "Book"}}></Tab.Screen>
+      <Tab.Screen name="ItemDetails" component={ItemDetails} options={{title: "ItemDetails"}}></Tab.Screen>
+      <Tab.Screen name="Cart" component={Cart} options={{title: "Cart"}}></Tab.Screen>
       <Tab.Screen name="Profile" component={Profile} options={{title: "Profile"}}></Tab.Screen>
       
   </Tab.Navigator>
