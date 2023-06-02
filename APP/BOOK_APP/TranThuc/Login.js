@@ -1,22 +1,60 @@
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity ,Alert} from 'react-native'
 import React from 'react'
+import { useState ,useContext} from 'react'
+import { AppContext } from '../util/AppContext'
 
-const Login = () => {
+
+const Login = (props) => {
+  const [email,setEmail]=useState("");
+  const {isLogin,setIsLogin}= useContext(AppContext)
+  const [password,setPassword]=useState("");
+  const {navigation} = props;
+  const showAlert =(mess)=>{
+    Alert.alert(
+      'Thông báo',
+      mess,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            'This alert was dismissed by tapping outside of the alert dialog.',
+          ),
+      },
+    );
+  }
+  const onClick =() =>{
+    if(email.length<=0){
+      showAlert("Vui lòng nhập username")
+    }
+    else if(password.length<=0){
+      showAlert("Vui lòng nhập password")
+    }
+    if(email=="admin" && password=="admin"){
+      // navigation.navigate('Home');
+      setIsLogin(true)
+    }
+  }
   return (
     <View>
       <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
 
-      <TextInput placeholder='User name' style={styles.TextInput1}>
+      <TextInput placeholder='User name' onChangeText={setEmail} style={styles.TextInput1}>
         <Text style={{
           marginStart: 100
         }} />
       </TextInput>
 
-      <TextInput placeholder='Password' style={styles.TextInput2}>
+      <TextInput placeholder='Password' onChangeText={setPassword} style={styles.TextInput2}>
         <Text/>
       </TextInput>
 
-      <TouchableOpacity style={styles.Press}>
+      <TouchableOpacity onPress={()=>onClick()} style={styles.Press}>
         <Text style={styles.TextNut}>Log in</Text>
       </TouchableOpacity>
 
