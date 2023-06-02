@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,Image } from 'react-native'
 import React, { useContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppContext } from './AppContext';
 import Login from '../TranThuc/Login';
-
 import ResetPass from '../TranThuc/ResetPass';
 import Home from '../LongVu/Home';
 import ItemCart from '../LongVu/ItemCart';
@@ -47,21 +46,19 @@ const News = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({}) => {
           let iconName;
 
           if (route.name === 'Mains') {
-            iconName = focused
-              ? 'home'
-              : 'home';
+            return <Image source={require('../src/home1.png')} />
           } else if (route.name === 'ItemDetails') {
-            iconName = focused ? 'home' : 'home';
+            return <Image source={require('../src/home1.png')} />
           }
           else if (route.name === 'Cart') {
-            iconName = focused ? 'albums-outline' : 'albums-outline';
+            return <Image source={require('../src/home1.png')} />
           }
           else if (route.name === 'Profile') {
-            iconName = focused ? 'person-circle-outline' : 'person-circle-outline';
+            return <Image source={require('../src/home1.png')} />
           }
 
 
