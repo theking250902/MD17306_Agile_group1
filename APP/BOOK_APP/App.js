@@ -1,24 +1,25 @@
-
 import React from 'react';
-import {
-   View,Text
-} from 'react-native';
-
-import Home from './LongVu/Home';
-import ItemBook from './LongVu/ItemBook';
-import Book from './LongVu/Book';
-import ItemDetails from './LongVu/ItemDetails';
-import ItemCart from './LongVu/ItemCart';
-
+import { StyleSheet, Text, View } from 'react-native';
+import { AppContextProvider } from './util/AppContext';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './util/AppNavigator';
+import { AppContext } from './util/AppContext';
+import Welcome from './TranThuc/Welcome';
 const App = () => {
- return(
-  <View>
-    {/* <Home></Home> */}
-    <ItemCart></ItemCart>
-  </View>
- )
-};
+   return (
+     <AppContextProvider>
+       <NavigationContainer styles={styles.container}>
+         <AppNavigator />
+       </NavigationContainer>
+     </AppContextProvider>
+   //  <Welcome/>
+   );
+ };
 
 
-
+const styles = StyleSheet.create({
+   container: {
+      flex: 1
+   },
+});
 export default App;
