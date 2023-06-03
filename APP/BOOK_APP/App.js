@@ -7,12 +7,12 @@ import { AppContext } from './util/AppContext';
 import Welcome from './TranThuc/Welcome';
 const App = () => {
    return (
-    //  <AppContextProvider>
-    //    <NavigationContainer styles={styles.container}>
-    //      <AppNavigator />
-    //    </NavigationContainer>
-    //  </AppContextProvider>
-    <Welcome/>
+     <AppContextProvider>
+       <NavigationContainer styles={styles.container}>
+         <AppNavigator />
+       </NavigationContainer>
+     </AppContextProvider>
+   //  <Welcome/>
    );
  };
 

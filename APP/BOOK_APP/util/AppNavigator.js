@@ -17,13 +17,15 @@ import Register from '../TranThuc/Register';
 import Icon from 'react-native-ionicons';
 import ItemHome from '../LongVu/ItemHome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Welcome from '../TranThuc/Welcome';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Users = () => {
   return (
-    <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName='Welcome' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Register" component={Register} />
       <Tab.Screen name="Home" component={Home}></Tab.Screen>
     </Stack.Navigator>
