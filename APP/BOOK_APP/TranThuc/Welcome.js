@@ -1,10 +1,15 @@
 import { Image, StyleSheet, Text, View,Pressable, TouchableOpacity,  } from 'react-native'
 import React from 'react'
 
-const Welcome = () => {
+const Welcome = (props) => {
+    const {navigation} = props;
+    const onLogin=(navigation)=>{
+        navigation.navigate('Login')
+    }
   return (
+
     <View style={styles.Nen}>
-        <Image style={styles.Logo} source={require('../TranThuc/images/Book.png')} ></Image>
+        
         
         <Text style={styles.Text1}>Welcome</Text>
         
@@ -14,7 +19,7 @@ const Welcome = () => {
             <Text style={styles.TextNut1}>Create account</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity  style={styles.Press2}>
+        <TouchableOpacity onPress={()=>onLogin(navigation)} style={styles.Press2}>
             <Text style={styles.TextNut2}>Log in</Text>
         </TouchableOpacity>
     </View>
