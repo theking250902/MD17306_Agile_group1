@@ -83,6 +83,23 @@ const Home = (props) => {
                         showsVerticalScrollIndicator={false}
                     />
                 </View>
+                <Text style={{
+                    fontWeight: '500',
+                    fontSize: 20,
+                    color: '#000000',
+                    marginLeft: 10,
+                    marginTop: 20
+                }}>All Book</Text>
+
+                <View style={{ flexDirection: 'row', width: '100%', marginTop: 10}}>
+                    <FlatList
+                        numColumns={3}
+                        data={data}
+                        renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
+                        keyExtractor={item => item._id}
+                        showsVerticalScrollIndicator={false}
+                    />
+                </View>
             </ScrollView>
         </View>
     )
