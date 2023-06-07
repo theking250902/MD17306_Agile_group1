@@ -6,9 +6,9 @@ const schema = new Schema({
     name: {type: String}, // kiểu dữ liệu},
     author:{type:String},
     content:{type:String},
-    price:{type:Number},
     image:{type:String},
     category:{type:ObjectId,ref:'category'},
+    detail:{type:ObjectId,ref:'detail'},
 });
 module.exports = mongoose.models.product || mongoose.model('product', schema);
 // product -----> products

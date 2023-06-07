@@ -8,6 +8,14 @@ const getAllProducts = async ()=>{
         throw error;
     }
 }
+const getAllDetails = async ()=>{
+    try{
+        return await productService.getAllDetails();
+    }catch(error){
+        console.log("error productController.getAllDetails: "+error);
+        throw error;
+    }
+}
 const deleteProductById =async(id)=>{
     try{
         return await productService.deleteProductById(id);
@@ -52,4 +60,4 @@ const search = async (keyword)=>{
          
     }
 }
-module.exports={getAllProducts,deleteProductById,addNewProduct,updateProduct,getProductById,search};
+module.exports={getAllProducts,deleteProductById,addNewProduct,updateProduct,getProductById,search,getAllDetails};

@@ -46,6 +46,14 @@ router.get('/', async (req, res, next) => {
     //     const users = await userController.getAllUsers();
     // res.render('product/list', { users });
 });
+//localhost:3000/cpanel/product
+router.get('/details', async (req, res, next) => {
+    //hien thi trang danh sach sp
+    const detail = await productController.getAllDetails();
+    res.render('product/list', { detail });
+    //     const users = await userController.getAllUsers();
+    // res.render('product/list', { users });
+});
 router.get('/:id/delete', async (req, res, next) => {
     // hien thi trang danh sach sp
     try {

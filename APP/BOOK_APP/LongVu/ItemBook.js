@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
-import ItemDetails from './ItemDetails';
+import ItemDetails from './HomeDetails';
 
 const ItemBook = (props) => {
     const { products, navigation } = props;
@@ -42,11 +42,7 @@ const ItemBook = (props) => {
                 marginLeft: 266,
                 marginTop: 183
             }} source={require('./images/tym.png')}></Image>
-            <Image style={{
-                position: 'absolute',
-                marginLeft: 326,
-                marginTop: 175
-            }} source={require('./images/giohang.png')}></Image>
+
       </View>
     </View>
   )

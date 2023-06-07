@@ -11,13 +11,14 @@ import ItemCart from '../LongVu/ItemCart';
 import Book from '../LongVu/Book';
 import Profile from '../ttchien/file/Profile';
 import Cart from '../LongVu/Cart';
-import ItemDetails from '../LongVu/ItemDetails';
+import HomeDetails from '../LongVu/HomeDetails';
 import ListView from '../LongVu/Home'
 import Register from '../TranThuc/Register';
 import Icon from 'react-native-ionicons';
 import ItemHome from '../LongVu/ItemHome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Welcome from '../TranThuc/Welcome';
+import Notifications from '../LongVu/Notifications';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,6 @@ const Users = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Register" component={Register} />
-      <Tab.Screen name="Home" component={Home}></Tab.Screen>
     </Stack.Navigator>
   )
 }
@@ -36,7 +36,7 @@ const Mains = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name='ItemHome' component={ItemHome} />
+      <Stack.Screen name='HomeDetails' component={HomeDetails} />
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
@@ -50,20 +50,20 @@ const News = () => {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarLabelStyle:({fontSize:0}),
-        tabBarStyle:({height:80}),
+        tabBarStyle:({height:45}),
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
           if (route.name === 'Mains') {
-            return <Image style={styles.iconTab} source={require('../src/home-outline.png')} />
-          } else if (route.name === 'Cart') {
-            return <Image style={styles.iconTab} source={require('../src/notifications.png')} />
+            return <Image style={styles.iconTab} source={require('../src/home-color.png')} />
+          } else if (route.name === 'Notifications') {
+            return <Image style={styles.iconTab} source={require('../src/notification-color.png')} />
           }
-          else if (route.name === 'ItemDetails') {
-            return <Image style={styles.iconTab} source={require('../src/cart.png')} />
+          else if (route.name === 'Book') {
+            return <Image style={styles.iconTab} source={require('../src/favourite-color.png')} />
           }
           else if (route.name === 'Profile') {
-            return <Image style={styles.iconTab} source={require('../src/user-inline.png')} />
+            return <Image style={styles.iconTab} source={require('../src/man.png')} />
           }
 
           },
@@ -72,9 +72,8 @@ const News = () => {
         })}
       >
       <Tab.Screen name="Mains" component={Mains} ></Tab.Screen>
-      <Tab.Screen name="Cart" component={Cart} ></Tab.Screen>
-      <Tab.Screen name="ItemDetails" component={ItemDetails} ></Tab.Screen>
-
+      <Tab.Screen name="Notifications" component={Notifications} ></Tab.Screen>
+      <Tab.Screen name="Book" component={Book} ></Tab.Screen>
       <Tab.Screen name="Profile" component={Profile} ></Tab.Screen>
       
   </Tab.Navigator>
@@ -96,5 +95,5 @@ const AppNavigator = () => {
 export default AppNavigator
 
 const styles = StyleSheet.create({
-  iconTab:{width:44,height:38}
+  iconTab:{width:30,height:29}
 })

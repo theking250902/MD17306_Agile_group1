@@ -30,14 +30,16 @@ const authenweb = (req, res, next) => {
                     if (url.includes('login')) {
                         return res.redirect('/');
                     } else {
-                        // //kiem tra role
-                        // const {role}=decoded;
-                        // console.log('decoded: ',decoded);
-                        // if(role>0){
-                        //     req.session.destroy();
-                        //    return res.redirect('/login');
-                        // }
-                        next();
+                        //kiem tra role
+                        const {role}=decoded;
+                        console.log('decoded: ',decoded);
+                        console.log(decoded.role);
+                        if(role==100){
+                            
+
+                           next();
+                        }
+
                     }
                 }
             })

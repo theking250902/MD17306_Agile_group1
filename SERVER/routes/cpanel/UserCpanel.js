@@ -8,8 +8,7 @@ router.get('/', async (req, res, next) => {
     res.render('user/list-user', { users });
 });
 router.get('/logout', async (req, res, next) => {
-    const users = await userController.getAllUsers();
-    console.log(users);
-    res.render('product/list', { users });
+
+    res.render('/');
 });
 module.exports = router;
