@@ -81,11 +81,19 @@ const Login = (props) => {
 
       <Text style={{}}>-Or sign in with-</Text>
 
-      <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', marginBottom: 10 }}>
-        <Image style={styles.ICON} source={require('../TranThuc/images/Google.png')}></Image>
-        <Image style={styles.ICON} source={require('../TranThuc/images/Facebook.png')}></Image>
-        <Image style={styles.ICON} source={require('../TranThuc/images/Twitter.png')}></Image>
+      <View style={{ flexDirection: 'column', marginTop: 10, justifyContent: 'space-between', marginBottom: 10 }}>
+
+        <TouchableOpacity style={{ flexDirection: 'row',}}>
+        <Image source={require('../TranThuc/images/Google.png')}></Image>
+        <Text style={{ fontSize: 18, marginStart: 10 }}>Sign In with Google</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{ flexDirection: 'row',marginTop: 10,}}>
+        <Image source={require('../TranThuc/images/Facebook.png')}></Image>
+        <Text style={{ fontSize: 18, marginStart: 10 }}>Sign In with Facebook</Text>
+        </TouchableOpacity>
       </View>
+
       <View style={{ flexDirection: 'row' }}>
         <Text style={{}}>don't have an account yet ?</Text>
         <TouchableOpacity onPress={()=>onRegister()}>
