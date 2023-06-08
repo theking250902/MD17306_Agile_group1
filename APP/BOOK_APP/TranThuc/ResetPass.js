@@ -1,7 +1,54 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native'
-import React from 'react'
-
-const ResetPass = () => {
+import { StyleSheet, Text, View, Image, Pressable, TextInput, ToastAndroid, TouchableOpacity, Alert } from 'react-native'
+import React, {useContext, useState} from 'react'
+import { AppContext } from '../util/AppContext';
+import AxiosIntance from '../util/AxiosIntance';
+const ResetPass = async (props) => {
+    const { navigation } = props;
+    const [newPassword, setnewPassword] = useState("")
+    const [cNewPassword, setcNewPassword] = useState("")
+    const {setIsLogin, setinfoUser} = useContext(AppContext)
+    // const [setisRegister] = useState(AppContext)
+    const [newPass,setnewPass] = useState(AppContext);
+    if(newPass == ""){
+        Alert.alert('Thông Báo', 'Tài khoản không được để trống ', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]);
+      }else if(newPass == ""){
+        Alert.alert('Thông Báo', 'Mật khẩu không được để trống ', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]);
+      }
+      else if(passwordnew == ""){
+        console.log("asd:"+newPass)
+        Alert.alert('Thông Báo', 'Mật khẩu mới không được để trống ', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]);
+      }else{
+        const response = await AxiosIntance().post("/api/user/changepass", {password : newPassword});
+        console.log(response)
+        if (response.result == true) {
+          setIsLogin(false);
+            // navigation.navigate("DangNhap");
+          ToastAndroid.show("Đổi mật khẩu thành công", ToastAndroid.SHORT);
+        } else {
+          ToastAndroid.show("Đổi mật khẩu thất bại", ToastAndroid.SHORT);
+        }
+      }
   return (
     <View>
         <Text  style={styles.Text1}>Reset password</Text>
@@ -12,13 +59,13 @@ const ResetPass = () => {
 
         <Image style={styles.Line1} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput placeholder='New password' style={styles.Text3}>
+        <TextInput placeholder='Newpassword' style={styles.Text3}>
             <Text/>
         </TextInput>
 
         <Image style={styles.Line2} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput placeholder='Confirm password' style={styles.Text4}>
+        <TextInput placeholder='Confirmpassword' style={styles.Text4}>
             <Text/>
         </TextInput>
 
@@ -58,8 +105,6 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 32,
         display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
         color: '#000000',
     },
     Text3: {
@@ -72,8 +117,6 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 32,
         display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
         color: '#000000',
     },
     Text4: {
@@ -86,8 +129,6 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         lineHeight: 32,
         display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
         color: '#000000',
     },
     Line1: {

@@ -7,32 +7,56 @@ import ItemDetails from './HomeDetails';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import axios from 'axios';
 import AxiosIntance from '../util/AxiosIntance';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const Home = (props) => {
     // const [dataNe, setdataNe] = useState([]);
     const { navigation } = props;
     const [data, setdata] = useState([]);
+    const [isSearch, setIsSearch] = useState(false);
+    const [searchText, setSearchText] = useState([]);
+    const [data1, setdata1] = useState([]);
+    const [data2, setdata2] = useState([]);
     const [isLoading, setisLoading] = useState(true);
+    const search = async (searchText) => {
+        setisLoading(true);
+        setIsSearch(true)
+        const respone = await AxiosIntance().get("/product/search/name?keyword=" + searchText);
+        console.log("kq tim kiem: ", respone);
+        console.log("tim kiem: ", searchText);
+
+        if (respone.result == true) {
+            // lay du lie
+            //console.log("kq tim kiem: ",respone.product.name);
+            setdata(respone.product);
+
+            setisLoading(false);
+        }
+        else {
+            ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
+        }
+    }
     useEffect(() => {
         const getNews = async () => {
             const respone = await AxiosIntance().get("/product");
-            console.log(respone.result);
+            setIsSearch(false)
             if (respone.result == true) {
-                // lay du lieu ok
+                console.log(respone.product.name);
                 setdata(respone.product);
-
+                // lay du lieu ok
                 setisLoading(false);
             }
             else {
                 ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
             }
         }
+
         getNews();
 
         return () => {
         }
     }, []);
     return (
-        <View style={{justifyContent:'center',alignItems:'center' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <ScrollView  >
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={{
@@ -47,59 +71,79 @@ const Home = (props) => {
                         marginLeft: 5
                     }} source={require('./images/hello.png')}></Image>
                 </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                    <TextInput style={{
-                        width: windowsWidth - 80,
-                        height: 36,
-                        borderWidth: 0.879,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderColor: '#000000',
-                        borderRadius: 45,
-                        marginTop: 22,
-                    }}>
-                    </TextInput>
-                    <TouchableOpacity style={{ position: 'absolute', start: '80%', top: '48%' }}>
+                <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
+                    <TextInput placeholder='Search' onChangeText={setSearchText} style={{ width: windowsWidth - 60, fontSize: 18, borderWidth: 0.879, paddingStart: 20, borderColor: '#000000', borderRadius: 45, marginTop: 22, }}></TextInput>
+                    <TouchableOpacity onPress={() => search(searchText)} style={{ position: 'absolute', start: '80%', top: '48%' }}>
                         <Image style={{
                         }} source={require('./images/search.png')}></Image>
                     </TouchableOpacity>
 
 
                 </View>
-                <Text style={{
-                    fontWeight: '500',
-                    fontSize: 20,
-                    color: '#000000',
-                    marginLeft: 10,
-                    marginTop: 20
-                }}>Recommendation</Text>
+                {
+                    isSearch == false ?
+                        <View>
+                            <Text style={{
+                                fontWeight: '500',
+                                fontSize: 20,
+                                color: '#000000',
+                                marginLeft: 10,
+                                marginTop: 20
+                            }}>Recommendation</Text>
 
-                <View style={{ flexDirection: 'row', width: '100%', marginTop: 10}}>
-                    <FlatList
-                        numColumns={3}
-                        data={data}
-                        renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
-                        keyExtractor={item => item._id}
-                        showsVerticalScrollIndicator={false}
-                    />
-                </View>
-                <Text style={{
-                    fontWeight: '500',
-                    fontSize: 20,
-                    color: '#000000',
-                    marginLeft: 10,
-                    marginTop: 20
-                }}>All Book</Text>
+                            <View style={{ flexDirection: 'row', width: '100%', marginTop: 10 }}>
+                                <FlatList
+                                    numColumns={5}
+                                    data={data}
+                                    renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
+                                    keyExtractor={item => item._id}
+                                    showsVerticalScrollIndicator={false}
+                                />
+                            </View>
+                            <Text style={{
+                                fontWeight: '500',
+                                fontSize: 20,
+                                color: '#000000',
+                                marginLeft: 10,
+                                marginTop: 20
+                            }}>All Book</Text>
 
-                <View style={{ flexDirection: 'row', width: '100%', marginTop: 10}}>
-                    <FlatList
-                        numColumns={3}
-                        data={data}
-                        renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
-                        keyExtractor={item => item._id}
-                        showsVerticalScrollIndicator={false}
-                    />
-                </View>
+                            <SafeAreaView style={{ flexDirection: 'row', width: '100%', marginTop: 10 }}>
+                                <FlatList
+                                    numColumns={2}
+                                    data={data}
+                                    renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
+                                    keyExtractor={item => item._id}
+                                    showsVerticalScrollIndicator={false}
+                                />
+                                {/* <FlatList
+                            data={data}
+                            renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
+                            keyExtractor={item => item._id}
+                            showsVerticalScrollIndicator={false}
+                        /> */}
+                            </SafeAreaView>
+                        </View>
+                        :
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{
+                                fontWeight: '500',
+                                textAlign: 'center',
+                                fontSize: 20,
+                                color: '#000000',
+                                marginLeft: 10,
+                                marginTop: 20
+                            }}>Kết quả tìm kiếm</Text>
+                            <FlatList
+                                numColumns={2}
+                                data={data}
+                                renderItem={({ item }) => <ItemHome products={item} navigation={navigation} />}
+                                keyExtractor={item => item._id}
+                                showsVerticalScrollIndicator={false}
+                            />
+                        </View>
+                }
+
             </ScrollView>
         </View>
     )

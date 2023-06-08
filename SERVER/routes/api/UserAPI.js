@@ -48,13 +48,19 @@ router.post('/register', [validation.checkRegister], async (req, res, next) => {
         
         const {email, password, name} = req.body;
         const result = await userController.register(email, password, name);
+        let user ={
+            name:name,
+            password:password,
+            email:email
+        }
         let data ={
             error:false,
             responeTimestamp:new Date(),
             statusCode:200,
-            data:{}
+            result,
+            user
         }
-        return res.status(200).json({result,data});
+        return res.status(200).json({result:true,data});
     }catch(error){
         console.log(error);
         //next error; Chi chay web

@@ -13,6 +13,14 @@ const login = async (email, password) => {
     }
     return false;
 }
+const changepass = async (email, password) => {
+    try {
+
+    } catch (error) {
+
+    }
+    return false;
+}
 const getAllUsers = async (size, page) => {
     // lay toan bo sp trong database
     // size =20 , page =4 ==> 61-80
@@ -39,7 +47,7 @@ const register = async (email, password, name) => {
     }
     return false;
 }
-module.exports = { login, register,getAllUsers };
+module.exports = { login, register,getAllUsers,changepass };
 
 var users = [
     { _id: 1, email: 'abc@gmail.com', password: 1, name: 'Long Vu ChiPu' },

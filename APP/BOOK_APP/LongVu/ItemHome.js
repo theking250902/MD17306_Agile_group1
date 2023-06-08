@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width:'90%',
     fontWeight: '400',
-    height:80,
+    height:84,
     fontStyle: 'normal',
     marginTop: 2,
     alignItems:'center',

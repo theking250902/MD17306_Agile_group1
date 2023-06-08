@@ -3,19 +3,22 @@ import React from 'react'
 
 const Welcome = (props) => {
     const {navigation} = props;
-    const onLogin=(navigation)=>{
+    const onLogin=()=>{
         navigation.navigate('Login')
+    }
+    const onRegister=()=>{
+        navigation.navigate('Register')
     }
   return (
 
     <View style={styles.Nen}>
         
-        
+        <Image style={styles.Logo} source={require('../TranThuc/images/Book.png')}></Image>
         <Text style={styles.Text1}>Welcome</Text>
         
         <Text style={styles.Text2}>read without limits</Text>
 
-        <TouchableOpacity  style={styles.Press1}>
+        <TouchableOpacity onPress={onRegister}  style={styles.Press1}>
             <Text style={styles.TextNut1}>Create account</Text>
         </TouchableOpacity>
 
@@ -32,11 +35,12 @@ const styles = StyleSheet.create({
     Nen:{
         flex: 1,
         backgroundColor: '#5B5D8B',
+        alignItems:'center'
     },
     Logo:{
         position: 'absolute',
         marginTop: 165,
-        marginStart: 90,
+        marginStart: 85,
     },
     Text1:{
         position: 'absolute',

@@ -30,6 +30,13 @@ const register = async (email,password,name)=>{
         console.log(error);
     }
 }
+const changepass = async (email,password)=>{
+    try {
+        return await userService.changepass(email,password);
+    } catch (error) {
+        console.log(error);
+    }
+}
 const sendMail = async (email,subject,content)=>{
     try {
         const mailOptions ={
@@ -44,4 +51,4 @@ const sendMail = async (email,subject,content)=>{
     }
     return false;
 }
-module.exports={login,register,sendMail,getAllUsers};
+module.exports={login,register,sendMail,getAllUsers,changepass};
