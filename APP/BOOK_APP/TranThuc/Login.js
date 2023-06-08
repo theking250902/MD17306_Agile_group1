@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity ,Alert} from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
 import React from 'react'
-import { useState ,useContext} from 'react'
+import { useState, useContext } from 'react'
 import { AppContext } from '../util/AppContext'
-
+import axios from 'axios'
+import AxiosIntance from '../src/util/AxiosIntance'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = (props) => {
-  const [email,setEmail]=useState("");
-  const {isLogin,setIsLogin}= useContext(AppContext)
-  const [password,setPassword]=useState("");
-  const {navigation} = props;
-  const showAlert =(mess)=>{
+  const [email, setEmail] = useState("");
+  const { setIsLogin, setinfoUser } = useContext(AppContext)
+  const [newPass,setnewPass] = useState(AppContext);
+  const [password, setPassword] = useState("");
+  const { navigation } = props;
+  const showAlert = (mess) => {
     Alert.alert(
       'Thông báo',
       mess,
@@ -28,16 +31,28 @@ const Login = (props) => {
       },
     );
   }
-  const onClick =() =>{
-    if(email.length<=0){
+  const onClick = async () => {
+    if (email.length <= 0) {
       showAlert("Vui lòng nhập username")
     }
-    else if(password.length<=0){
+    else if (password.length <= 0) {
       showAlert("Vui lòng nhập password")
     }
-    if(email=="admin" && password=="admin"){
-      // navigation.navigate('Home');
-      setIsLogin(true)
+     else {
+      try {
+        const res = await AxiosIntance().post("/api/user/login", { email: email, password: password });
+        if (res.result == true) {
+          setinfoUser(res.user);
+          setIsLogin(true);
+          await AsyncStorage.setItem("token", res.token);
+          ToastAndroid.show("Đăng Nhập thành công", ToastAndroid.SHORT);
+          setnewPass(password);
+        } else {
+          ToastAndroid.show("Đăng nhập that bai", ToastAndroid.SHORT);
+        }
+      } catch {
+        ToastAndroid.show("Đăng nhập thất bạiuuuu", ToastAndroid.SHORT);
+      }
     }
   }
   return (
@@ -51,17 +66,17 @@ const Login = (props) => {
       </TextInput>
 
       <TextInput placeholder='Password' onChangeText={setPassword} style={styles.TextInput2}>
-        <Text/>
+        <Text />
       </TextInput>
 
-      <TouchableOpacity onPress={()=>onClick()} style={styles.Press}>
+      <TouchableOpacity onPress={() => onClick()} style={styles.Press}>
         <Text style={styles.TextNut}>Log in</Text>
       </TouchableOpacity>
 
       <Text style={styles.Text1}>Forgetten password?</Text>
 
       <Text style={styles.Text2}>-Or sign in with-</Text>
-      
+
       <Image style={styles.Google} source={require('../TranThuc/images/Google.png')}></Image>
 
       <Image style={styles.Facebook} source={require('../TranThuc/images/Facebook.png')}></Image>
@@ -88,10 +103,10 @@ const styles = StyleSheet.create({
     width: 190,
     marginTop: 344,
     borderWidth: 1,
-    borderColor:'#00000087',
+    borderColor: '#00000087',
     borderRadius: 50,
     marginStart: 90,
-    marginLeft:90,
+    marginLeft: 90,
   },
   TextUser: {
     fontFamily: 'Hind Siliguri',
@@ -109,7 +124,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 190,
     marginTop: 396,
-    borderColor:'#00000087',
+    borderColor: '#00000087',
     borderWidth: 1,
     borderRadius: 270,
     marginStart: 90,
@@ -125,21 +140,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#000000',
   },
-  Press:{
+  Press: {
     position: 'absolute',
     marginTop: 459,
     marginStart: 88,
-    height:28,
-    width:190,
-    backgroundColor:'#5B5D8B',
-    borderRadius:45,
-    justifyContent:'center',
-    alignItems:'center'
-},
+    height: 28,
+    width: 190,
+    backgroundColor: '#5B5D8B',
+    borderRadius: 45,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   TextNut: {
     position: 'absolute',
-    color:'#FFFFFF',
-    fontSize:17,
+    color: '#FFFFFF',
+    fontSize: 17,
     fontFamily: 'Hind Siliguri',
   },
 

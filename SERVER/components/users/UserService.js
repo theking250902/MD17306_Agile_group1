@@ -39,7 +39,20 @@ const register = async (email, password, name) => {
     }
     return false;
 }
-module.exports = { login, register,getAllUsers };
+const changepass = async (newPassword, cNewPassword) => {
+    try {
+        let user = await userModel.findOne({password:newPassword, cNewPassword});
+        if(user){
+            let check =bcrypt.compareSync(newPassword,user.newPassword);
+            return check ? user : false;
+        }
+    } catch (error) {
+        console.log("changepass error: ",error);
+
+    }
+    return false;
+}
+module.exports = { login, register,getAllUsers, changepass };
 
 var users = [
     { _id: 1, email: 'abc@gmail.com', password: 1, name: 'Long Vu ChiPu' },

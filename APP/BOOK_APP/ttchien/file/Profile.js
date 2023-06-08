@@ -1,7 +1,25 @@
-import {StyleSheet, Text, View, Pressable, Image} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, Pressable, Image, ToastAndroid, TouchableOpacity} from 'react-native';
+import React, {useContext, } from 'react';
+import AxiosIntance from '../../src/util/AxiosIntance';
+import { AppContext } from '../../util/AppContext';
+const Profile = (props) => {
+  const {navigation} = props;
+  const { infoUser, setinfoUser } = useContext(AppContext)
+  const {setIsLogin} = useContext(AppContext)
+  const Logout = async () =>{
+    const res = await AxiosIntance().get("/api/user/logout");
+    if(res.result==true){
+      console.log('error result: ', res.result);
+      setIsLogin(false);
+      ToastAndroid.show("Đăng xuất thành công", ToastAndroid.SHORT);
+    }else{
+      ToastAndroid.show("Đăng xuất không thành công", ToastAndroid.SHORT);
+    }
+  }
 
-const Profile = () => {
+  const onRessetPass = () =>{
+    navigation.navigate('ResetPass');
+  }
   return (
     <View style={{backgroundColor:'#DDDDDD'}}>
       <Pressable style={styles.chien1}>
@@ -24,12 +42,12 @@ const Profile = () => {
           source={require('../icon/icons_password.png')}></Image>
         <Text style={styles.text3}>Privacy</Text>
       </Pressable>
-      <Pressable style={styles.chien2}>
+      <TouchableOpacity onPress={onRessetPass} style={styles.chien2}>
         <Image
           style={{marginTop: 5, marginLeft: 5}}
           source={require('../icon/icon_Key.png')}></Image>
         <Text style={styles.text4}>Manage your password</Text>
-      </Pressable>
+      </TouchableOpacity>
       <Pressable style={styles.chien2}>
         <Image source={require('../icon/icon_heart.png')}></Image>
         <Text style={styles.text5}>Your favourite</Text>
@@ -59,12 +77,12 @@ const Profile = () => {
           <Text style={{fontSize:25, position:'absolute',top:3 ,left:22}}>i</Text>
         <Text style={styles.text9}>About Us</Text>
       </Pressable>
-      <Pressable style={styles.chien2}>
+      <TouchableOpacity onPress={Logout} style={styles.chien2}>
         <Image
           style={{marginTop: 5, marginLeft: 10}}
           source={require('../icon/icon_LogOut.png')}></Image>
         <Text style={styles.text10}>Log Out</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

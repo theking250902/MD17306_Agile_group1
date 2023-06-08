@@ -18,14 +18,15 @@ import Icon from 'react-native-ionicons';
 import ItemHome from '../LongVu/ItemHome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Welcome from '../TranThuc/Welcome';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const Users = () => {
   return (
     <Stack.Navigator initialRouteName='Welcome' screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Tab.Screen name="Home" component={Home}></Tab.Screen>
     </Stack.Navigator>
@@ -38,6 +39,7 @@ const Mains = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name='ItemHome' component={ItemHome} />
       <Stack.Screen name="Book" component={Book} />
+      <Stack.Screen name="ResetPass" component={ResetPass} />
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
 

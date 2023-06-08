@@ -1,42 +1,101 @@
-import { StyleSheet, Text, View, Image, TextInput, Pressable, TouchableOpacity } from 'react-native'
-import React from 'react'
-
+import { StyleSheet, Text, View, Image, TextInput, Pressable, TouchableOpacity, ToastAndroid } from 'react-native'
+import React, {useState, useContext} from 'react'
+import { AppContext } from '../util/AppContext';
+import AxiosIntance from '../src/util/AxiosIntance';
 const Register = (props) => {
     const { navigation } = props;
+    const [email, setemailUser] = useState("")
+    const [password, setpasswordUser] = useState("")
+    const [name, setName] = useState('')
+    const [confirm_password, setconfirm_password] = useState('')
+    const { newPass, setnewPass } = useContext(AppContext);
 
     const Login = () => {
         navigation.navigate('Login')
+    }
+    const dangKyNe = async () => {
+        // let data = { email, password, name, confirm_password }
+        // const doFetch = async (data) => {
+        //     let url = 'http://172.16.65.19:3000/userApi/register'
+        //     const response = await fetch(url, {
+        //         method: "POST", 
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         }, body: JSON.stringify(data), 
+        //     });
+        //     return response.json(); 
+        // }
+        // const res = await doFetch(data);
+        // console.log(res);
+    
+      if (email == "") {
+        Alert.alert('Thông Báo', 'Tài khoản không được để trống ', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ]);
+      } else if (password == "") {
+        Alert.alert('Thông Báo', 'Mật khẩu không được để trống ', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ]);
       }
-  return (
-    <View>
-    <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
+  
+      const responseDK = await AxiosIntance().post("/api/user/register", { email: email, password: password, confirm_password: confirm_password, name: name });
+      console.log(responseDK);
+  
+  
+  
+      if (responseDK.result == true) {
+        setnewPass(password);
+        console.log("Pass moi ne:" + newPass);
+        navigation.navigate("Login");
+        ToastAndroid.show("Dang ky thanh cong", ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show("Dang ky that bai", ToastAndroid.SHORT);
+      }
+  
+    }
+    return (
+        <View>
+            <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
 
-    <TextInput placeholder='Full name' style={styles.TextInput1}>
-        <Text/>
-    </TextInput>
+            <TextInput onChangeText={setName} placeholder='Full name' style={styles.TextInput1}>
+                <Text />
+            </TextInput>
 
-    <TextInput placeholder='E-mail' style={styles.TextInput2}>
-        <Text/>
-    </TextInput>
+            <TextInput onChangeText={setemailUser} placeholder='E-mail' style={styles.TextInput2}>
+                <Text />
+            </TextInput>
 
-    <TextInput placeholder='Pass word' style={styles.TextInput3}>
-        <Text/>
-    </TextInput>
+            <TextInput onChangeText={setpasswordUser} placeholder='Password' style={styles.TextInput3}>
+                <Text />
+            </TextInput>
+            <TextInput onChangeText={setconfirm_password} placeholder='Confirm_Password' style={styles.TextInput4}>
+                <Text />
+            </TextInput>
 
-    <Pressable style={styles.Press}>
-        <Text style={styles.TextNut}>Sign up</Text>
-    </Pressable>
+            <TouchableOpacity onPress={dangKyNe} style={styles.Press}>
+                <Text style={styles.TextNut}>Sign up</Text>
+            </TouchableOpacity>
 
 
-    <View style={{ flexDirection: 'row' }}>
-        <Text style={styles.Text3}>Already have an account?</Text>
-        <TouchableOpacity onPress={Login}>
-        <Text style={styles.Text4}>Log in</Text>
-        </TouchableOpacity>
-    </View>
+            <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.Text3}>Already have an account?</Text>
+                <TouchableOpacity onPress={Login}>
+                    <Text style={styles.Text4}>Log in</Text>
+                </TouchableOpacity>
+            </View>
 
-    </View>
-  )
+        </View>
+    )
 }
 
 export default Register
@@ -79,9 +138,19 @@ const styles = StyleSheet.create({
         borderRadius: 17,
         marginStart: 45
     },
+    TextInput4: {
+        position: 'absolute',
+        height: 45,
+        width: 300,
+        marginTop: 540,
+        borderWidth: 1,
+        borderColor: '#00000087',
+        borderRadius: 17,
+        marginStart: 45
+    },
     Press: {
         position: 'absolute',
-        marginTop: 540,
+        marginTop: 630,
         marginStart: 114,
         height: 40,
         width: 150,
@@ -92,8 +161,8 @@ const styles = StyleSheet.create({
     },
     TextNut: {
         position: 'absolute',
-        color:'#FFFFFF',
-        fontSize:17,
+        color: '#FFFFFF',
+        fontSize: 17,
         fontFamily: 'Hind Siliguri',
     },
     Text: {
@@ -112,7 +181,7 @@ const styles = StyleSheet.create({
     },
     Text3: {
         position: 'absolute',
-        marginTop: 650,
+        marginTop: 720,
         marginStart: 87,
         fontFamily: 'Hind Siliguri',
         fontSize: 15,
@@ -123,9 +192,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         color: '#000000',
-      },
-      Text4: {
-        marginTop: 650,
+    },
+    Text4: {
+        marginTop: 720,
         fontFamily: 'Hind Siliguri',
         fontSize: 15,
         fontStyle: 'normal',
@@ -134,5 +203,5 @@ const styles = StyleSheet.create({
         color: '#000000',
         position: 'absolute',
         marginLeft: 265
-      },
+    },
 })

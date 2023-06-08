@@ -65,14 +65,14 @@ router.post('/changepass', async (req, res, next) => {
     try{
         
         const {newPassword,cNewPassword} = req.body;
-        const result = await userController.register(email, password, name);
+        const result = await userController.register(newPassword, cNewPassword);
         let data ={
             error:false,
             responeTimestamp:new Date(),
             statusCode:200,
-            data:{}
+            result
         }
-        return res.status(200).json({result,data});
+        return res.status(200).json({result:true,data});
     }catch(error){
         console.log(error);
         //next error; Chi chay web
