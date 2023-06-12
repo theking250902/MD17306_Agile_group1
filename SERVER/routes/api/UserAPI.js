@@ -25,6 +25,7 @@ router.post('/login',async(req,res,next)=>{
         res.status(400).json({result:false});
     }
 });
+
 router.get('/logout',async(req,res,next)=>{
     try {
         req.session.destroy;
@@ -49,6 +50,7 @@ router.post('/register', [validation.checkRegister], async (req, res, next) => {
         const {email, password, name} = req.body;
         const result = await userController.register(email, password, name);
         let user ={
+            id:id,
             name:name,
             password:password,
             email:email
@@ -67,22 +69,31 @@ router.post('/register', [validation.checkRegister], async (req, res, next) => {
         return res.status(400).json({result: false});
     }
 });
-router.post('/changepass', async (req, res, next) => {
+router.post('/changepass/:_id', async (req, res, next) => {
     try{
-        
-        const {newPassword,cNewPassword} = req.body;
-        const result = await userController.register(email, password, name);
+        const { _id } = req.params;
+        const {new_password} = req.body;
+        console.log("API truoc: ",_id, new_password);
+        const kq = await userController.changepass(_id, new_password);
         let data ={
             error:false,
             responeTimestamp:new Date(),
             statusCode:200,
-            data:{}
+            kq,
         }
-        return res.status(200).json({result,data});
+        if(kq==null){
+            return res.status(400).json({result:false,messenger:"doi mat khau ko thanh cong"});
+        }
+        else{
+            return res.status(200).json({result:true,data,messenger:"doi mat khau thanh cong"});
+        }
+
+
+
     }catch(error){
         console.log(error);
         //next error; Chi chay web
-        return res.status(400).json({result: false});
+        return res.status(400).json({result: false,messenger:"Ko doi duoc mat khau"});
     }
 });
 // api gui mail

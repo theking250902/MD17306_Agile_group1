@@ -42,7 +42,7 @@ const Login = (props) => {
     }
     else {
       try {
-        const res = await AxiosIntance().post("/api/user/login", { email: email, password: password });
+        const res = await AxiosIntance().post("/user/login", { email: email, password: password });
         if (res.result == true) {
           setinfoUser(res.user);
           setIsLogin(true);

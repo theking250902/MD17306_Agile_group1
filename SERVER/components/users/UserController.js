@@ -23,16 +23,16 @@ const getAllUsers = async ()=>{
 const login = async (email,password)=>{
     return await userService.login(email,password);
 }
-const register = async (email,password,name)=>{
+const register = async (email,new_password)=>{
     try {
-        return await userService.register(email,password,name);
+        return await userService.register(email,new_password);
     } catch (error) {
         console.log(error);
     }
 }
-const changepass = async (email,password)=>{
+const changepass = async (_id,password)=>{
     try {
-        return await userService.changepass(email,password);
+        return await userService.changepass(_id,password);
     } catch (error) {
         console.log(error);
     }

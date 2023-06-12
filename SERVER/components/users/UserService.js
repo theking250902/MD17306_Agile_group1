@@ -2,24 +2,30 @@ const bcrypt = require('bcryptjs');
 const userModel = require('./UserModel');
 const login = async (email, password) => {
     try {
-        let user = await userModel.findOne({email:email});
-        if(user){
-            let check =bcrypt.compareSync(password,user.password);
+        let user = await userModel.findOne({ email: email });
+        if (user) {
+            let check = bcrypt.compareSync(password, user.password);
             return check ? user : false;
         }
     } catch (error) {
-        console.log("Login error: ",error);
+        console.log("Login error: ", error);
 
     }
     return false;
 }
-const changepass = async (email, password) => {
-    try {
+const changepass = async (_id,new_password) => {
+    console.log("truoc: ",_id, new_password);
+    const salt = bcrypt.genSaltSync(4);
+    const hash = bcrypt.hashSync(new_password, salt);
+    let userResult = await userModel.findByIdAndUpdate(
+        { _id: _id },
+        {
+            password: hash,
+        }
+    );
 
-    } catch (error) {
-
-    }
-    return false;
+    console.log(userResult);
+    return userResult;
 }
 const getAllUsers = async (size, page) => {
     // lay toan bo sp trong database
@@ -38,7 +44,7 @@ const register = async (email, password, name) => {
         if (!user) {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
-            const newUser = { email, password: hash, name,role:1 };
+            const newUser = { email, password: hash, name, role: 1 };
             await userModel.create(newUser);
             return true;
         }
@@ -47,7 +53,7 @@ const register = async (email, password, name) => {
     }
     return false;
 }
-module.exports = { login, register,getAllUsers,changepass };
+module.exports = { login, register, getAllUsers, changepass };
 
 var users = [
     { _id: 1, email: 'abc@gmail.com', password: 1, name: 'Long Vu ChiPu' },
