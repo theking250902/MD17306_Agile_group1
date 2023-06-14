@@ -23,7 +23,7 @@ const Register = (props) => {
     const dangKyNe = async () => {
 
         if (email == "") {
-            Alert.alert('Thông Báo', 'Tài khoản không được để trống ', [
+            Alert.alert('Thông Báo', 'Email không được để trống ', [
                 {
                     text: 'Cancel',
                     onPress: () => console.log('Cancel Pressed'),
@@ -31,8 +31,8 @@ const Register = (props) => {
                 },
                 { text: 'OK', onPress: () => console.log('OK Pressed') },
             ]);
-        } else if (password == "") {
-            Alert.alert('Thông Báo', 'Mật khẩu không được để trống ', [
+        } else if (name == "") {
+            Alert.alert('Thông Báo', 'Name không được để trống ', [
                 {
                     text: 'Cancel',
                     onPress: () => console.log('Cancel Pressed'),
@@ -40,17 +40,44 @@ const Register = (props) => {
                 },
                 { text: 'OK', onPress: () => console.log('OK Pressed') },
             ]);
-        }
+        }else if (password == "") {
+          Alert.alert('Thông Báo', 'Password không được để trống ', [
+              {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+              },
+              { text: 'OK', onPress: () => console.log('OK Pressed') },
+          ]);
+      }else if (confirm_password == "") {
+        Alert.alert('Thông Báo', 'confirm_password không được để trống ', [
+            {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+            { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ]);
+    }else if (confirm_password != password) {
+      Alert.alert('Thông Báo', 'confirm_password phải trùng với password ', [
+          {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+          },
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+  }
 
-        const responseDK = await AxiosIntance().post("/user/register", { email: email, password: password, confirm_password: confirm_password, name: name });
+        const responseDK = await AxiosIntance().post("/user/register", { email: email, password: password,  name: name, confirm_password: confirm_password });
         console.log(responseDK);
         if (responseDK.result == true) {
             console.log(responseDK);
             setinfoUser(responseDK.data.user);
             setIsLogin(true)
-            ToastAndroid.show("Dang ky thanh cong", ToastAndroid.SHORT);
+            ToastAndroid.show("Đăng ký thành công", ToastAndroid.SHORT);
         } else {
-            ToastAndroid.show("Dang ky that bai", ToastAndroid.SHORT);
+            ToastAndroid.show("Đăng ký thất bại", ToastAndroid.SHORT);
         }
 
     }

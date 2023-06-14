@@ -47,10 +47,10 @@ router.get('/logout',async(req,res,next)=>{
 router.post('/register', [validation.checkRegister], async (req, res, next) => {
     try{
         
-        const {email, password, name} = req.body;
+        const {_id, email, password, name} = req.body;
         const result = await userController.register(email, password, name);
         let user ={
-            id:id,
+            id : _id,
             name:name,
             password:password,
             email:email

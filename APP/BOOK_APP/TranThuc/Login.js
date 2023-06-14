@@ -47,13 +47,13 @@ const Login = (props) => {
           setinfoUser(res.user);
           setIsLogin(true);
           await AsyncStorage.setItem("token", res.token);
-          ToastAndroid.show("Đăng Nhập thành công", ToastAndroid.SHORT);
+          ToastAndroid.show("Chào mừng bạn đến với App đọc sách nhân văn của chúng tôi", ToastAndroid.SHORT);
           setnewPass(password);
         } else {
-          ToastAndroid.show("Đăng nhập không thành công", ToastAndroid.SHORT);
+          ToastAndroid.show("đăng nhập thất bại", ToastAndroid.SHORT);
         }
       } catch {
-        ToastAndroid.show("Đăng nhập thất bại", ToastAndroid.SHORT);
+        ToastAndroid.show("Tài khoản hoặc mật khẩu không chính xác", ToastAndroid.SHORT);
       }
     }
   }

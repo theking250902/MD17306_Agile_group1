@@ -4,8 +4,8 @@ import { AppContext } from '../util/AppContext';
 import AxiosIntance from '../util/AxiosIntance';
 const ResetPass = (props) => {
     const { navigation } = props;
-    const [new_password, setnew_Password] = useState("")
-    const {setIsLogin, setinfoUser} = useContext(AppContext)
+    const [newpassword, setnewPassword] = useState("")
+    const {setIsLogin, setinfoUser, infoUser} = useContext(AppContext)
     // const [setisRegister] = useState(AppContext)
     const [newPass,setnewPass] = useState(AppContext);
     // if(newPass == ""){
@@ -39,7 +39,7 @@ const ResetPass = (props) => {
     //     ]);
     //   }
     const onChanpass = async () => {
-      const response = await AxiosIntance().post("/user/changepass/:_id", {password : new_password,newPass});
+      const response = await AxiosIntance().post("/user/changepass", {_id:infoUser._id , new_password : newpassword});
         console.log(response)
         if (response.result == true) {
           setIsLogin(false);
@@ -53,13 +53,13 @@ const ResetPass = (props) => {
     <View>
         <Text  style={styles.Text1}>Reset password</Text>
 
-        <TextInput onChangeText={setnewPass} placeholder='Password' style={styles.Text2}>
+        <TextInput onChangeText={setinfoUser} placeholder='Password' style={styles.Text2}>
         <Text />
         </TextInput>
 
         <Image style={styles.Line1} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput onChangeText={setnew_Password} placeholder='Newpassword' style={styles.Text3}>
+        <TextInput onChangeText={setnewPassword} placeholder='Newpassword' style={styles.Text3}>
             <Text/>
         </TextInput>
 
