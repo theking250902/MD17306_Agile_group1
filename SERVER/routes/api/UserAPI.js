@@ -69,10 +69,9 @@ router.post('/register', [validation.checkRegister], async (req, res, next) => {
         return res.status(400).json({result: false});
     }
 });
-router.post('/changepass/:_id', async (req, res, next) => {
+router.post('/changepass', async (req, res, next) => {
     try{
-        const { _id } = req.params;
-        const {new_password} = req.body;
+        const {_id, new_password} = req.body;
         console.log("API truoc: ",_id, new_password);
         const kq = await userController.changepass(_id, new_password);
         let data ={
