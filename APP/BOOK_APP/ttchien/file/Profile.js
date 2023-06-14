@@ -6,14 +6,28 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
+import AxiosIntance from '../../util/AxiosIntance';
+import { AppContext } from '../../util/AppContext';
 
 const Profile = (props) => {
   const {navigation} = props;
+  const {setIsLogin} = useContext(AppContext);
 
   const onChangePass = () => {
     navigation.navigate('ResetPass')
+  }
+
+  const OnLogout = async () => {
+    const res = await AxiosIntance().get('/user/logout');
+    if(res.result==true){
+      setIsLogin(false);
+      ToastAndroid.show("Đăng xuất thành công", ToastAndroid.SHORT);
+    }else{
+      ToastAndroid.show("Đăng xuất thất bại", ToastAndroid.SHORT);
+    }
   }
   return (
     <ScrollView style={{backgroundColor: '#DDDDDD'}}>
@@ -80,12 +94,12 @@ const Profile = (props) => {
           source={require('../icon-ver2/ic__aboutus.png')}></Image>
         <Text style={styles.text1}>About Us</Text>
       </Pressable>
-      <Pressable style={styles.chien2}>
+      <TouchableOpacity onPress={OnLogout} style={styles.chien2}>
         <Image
           style={{width: 30, height: 30, margin: 5, marginLeft: 10}}
           source={require('../icon-ver2/ic__logout.png')}></Image>
         <Text style={styles.text1}>Log Out</Text>
-      </Pressable>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
