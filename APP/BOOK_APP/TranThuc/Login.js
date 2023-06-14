@@ -50,10 +50,10 @@ const Login = (props) => {
           ToastAndroid.show("Đăng Nhập thành công", ToastAndroid.SHORT);
           setnewPass(password);
         } else {
-          ToastAndroid.show("Đăng nhập that bai", ToastAndroid.SHORT);
+          ToastAndroid.show("Đăng nhập không thành công", ToastAndroid.SHORT);
         }
       } catch {
-        ToastAndroid.show("Đăng nhập thất bạiuuuu", ToastAndroid.SHORT);
+        ToastAndroid.show("Đăng nhập thất bại", ToastAndroid.SHORT);
       }
     }
   }
@@ -63,10 +63,10 @@ const Login = (props) => {
   return (
     <View style={{ alignItems: 'center', flex: 1 }}>
       <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '30%' }} source={require('../TranThuc/images/Group.png')} />
-      <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='User name' onChangeText={setEmail} >
+      <TextInput style={styles.TextInput} placeholder='User name' onChangeText={setEmail} >
       </TextInput>
       <View style={{ flexDirection: 'row' }}>
-        <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='Password' onChangeText={setEmail} >
+        <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='Password' onChangeText={setPassword} >
         </TextInput>
         <TouchableOpacity onPress={()=>setHide(!hide)} style={{ position: 'absolute', end: 0, top: '40%', marginRight: 10 }}>
           <Image style={{ width: 35, height: 25, }} source={require('../src/hide.png')} />

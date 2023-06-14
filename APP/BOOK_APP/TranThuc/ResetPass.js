@@ -2,44 +2,44 @@ import { StyleSheet, Text, View, Image, Pressable, TextInput, ToastAndroid, Touc
 import React, {useContext, useState} from 'react'
 import { AppContext } from '../util/AppContext';
 import AxiosIntance from '../util/AxiosIntance';
-const ResetPass = async (props) => {
+const ResetPass = (props) => {
     const { navigation } = props;
-    const [newPassword, setnewPassword] = useState("")
-    const [cNewPassword, setcNewPassword] = useState("")
+    const [new_password, setnew_Password] = useState("")
     const {setIsLogin, setinfoUser} = useContext(AppContext)
     // const [setisRegister] = useState(AppContext)
     const [newPass,setnewPass] = useState(AppContext);
-    if(newPass == ""){
-        Alert.alert('Thông Báo', 'Tài khoản không được để trống ', [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
-      }else if(newPass == ""){
-        Alert.alert('Thông Báo', 'Mật khẩu không được để trống ', [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
-      }
-      else if(passwordnew == ""){
-        console.log("asd:"+newPass)
-        Alert.alert('Thông Báo', 'Mật khẩu mới không được để trống ', [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
-      }else{
-        const response = await AxiosIntance().post("/api/user/changepass", {password : newPassword});
+    // if(newPass == ""){
+    //     Alert.alert('Thông Báo', 'Tài khoản không được để trống ', [
+    //       {
+    //         text: 'Cancel',
+    //         onPress: () => console.log('Cancel Pressed'),
+    //         style: 'cancel',
+    //       },
+    //       {text: 'OK', onPress: () => console.log('OK Pressed')},
+    //     ]);
+    //   }else if(newPass == ""){
+    //     Alert.alert('Thông Báo', 'Mật khẩu không được để trống ', [
+    //       {
+    //         text: 'Cancel',
+    //         onPress: () => console.log('Cancel Pressed'),
+    //         style: 'cancel',
+    //       },
+    //       {text: 'OK', onPress: () => console.log('OK Pressed')},
+    //     ]);
+    //   }
+    //   else if(newPassword == ""){
+    //     console.log("asd:"+newPass)
+    //     Alert.alert('Thông Báo', 'Mật khẩu mới không được để trống ', [
+    //       {
+    //         text: 'Cancel',
+    //         onPress: () => console.log('Cancel Pressed'),
+    //         style: 'cancel',
+    //       },
+    //       {text: 'OK', onPress: () => console.log('OK Pressed')},
+    //     ]);
+    //   }
+    const onChanpass = async () => {
+      const response = await AxiosIntance().post("/user/changepass/:_id", {password : new_password,newPass});
         console.log(response)
         if (response.result == true) {
           setIsLogin(false);
@@ -48,32 +48,32 @@ const ResetPass = async (props) => {
         } else {
           ToastAndroid.show("Đổi mật khẩu thất bại", ToastAndroid.SHORT);
         }
-      }
+    }
   return (
     <View>
         <Text  style={styles.Text1}>Reset password</Text>
 
-        <TextInput placeholder='Password' style={styles.Text2}>
+        <TextInput onChangeText={setnewPass} placeholder='Password' style={styles.Text2}>
         <Text />
         </TextInput>
 
         <Image style={styles.Line1} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput placeholder='Newpassword' style={styles.Text3}>
+        <TextInput onChangeText={setnew_Password} placeholder='Newpassword' style={styles.Text3}>
             <Text/>
         </TextInput>
 
         <Image style={styles.Line2} source={require('../TranThuc/images/Line23.png')}/>
 
-        <TextInput placeholder='Confirmpassword' style={styles.Text4}>
+        {/* <TextInput placeholder='Confirmpassword' style={styles.Text4}>
             <Text/>
-        </TextInput>
+        </TextInput> */}
 
         <Image style={styles.Line3} source={require('../TranThuc/images/Line23.png')}/>
 
-        <Pressable style={styles.Press}>
+        <TouchableOpacity onPress={onChanpass} style={styles.Press}>
             <Text style={styles.TextNut}>Update</Text>
-        </Pressable>
+        </TouchableOpacity>
     </View>
   )
 }

@@ -8,7 +8,7 @@ export const AppContextProvider = (props) => {
     const [infoUser, setinfoUser] = useState({});
     const [newPass, setnewPass] = useState({});
     return (
-        <AppContext.Provider value={{isLogin, setIsLogin,infoUser,setinfoUser}}>
+        <AppContext.Provider value={{isLogin, setIsLogin,infoUser,setinfoUser, newPass,setnewPass}}>
             {children}
         </AppContext.Provider>
     )

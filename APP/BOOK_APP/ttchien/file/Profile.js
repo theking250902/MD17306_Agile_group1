@@ -5,10 +5,16 @@ import {
   Pressable,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 
-const Profile = () => {
+const Profile = (props) => {
+  const {navigation} = props;
+
+  const onChangePass = () => {
+    navigation.navigate('ResetPass')
+  }
   return (
     <ScrollView style={{backgroundColor: '#DDDDDD'}}>
       <Pressable style={styles.chien1}>
@@ -38,12 +44,12 @@ const Profile = () => {
           source={require('../icon-ver2/ic__privacy.png')}></Image>
         <Text style={styles.text1}>Privacy</Text>
       </Pressable>
-      <Pressable style={styles.chien2}>
+      <TouchableOpacity onPress={onChangePass} style={styles.chien2}>
         <Image
           style={{width: 30, height: 30, margin: 5, marginLeft: 10}}
           source={require('../icon-ver2/ic__key.png')}></Image>
         <Text style={styles.text1}>Manage your password</Text>
-      </Pressable>
+      </TouchableOpacity>
       <Pressable style={styles.chien2}>
         <Image
           style={{width: 30, height: 30, margin: 5, marginLeft: 10}}

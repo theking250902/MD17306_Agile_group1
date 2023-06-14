@@ -27,6 +27,7 @@ const Users = () => {
     <Stack.Navigator initialRouteName='Welcome' screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="ResetPass" component={ResetPass} />
       <Stack.Screen name="Register" component={Register} />
     </Stack.Navigator>
   )
@@ -39,6 +40,7 @@ const Mains = () => {
       <Stack.Screen name='HomeDetails' component={HomeDetails} />
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="ResetPass" component={ResetPass} />
     </Stack.Navigator>
 
   )

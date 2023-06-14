@@ -56,7 +56,7 @@ const Register = (props) => {
     }
     return (
         <View style={{ alignItems: 'center', flex: 1 }}>
-            <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '20%' }} source={require('../TranThuc/images/Group.png')} />
+            <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '10%' }} source={require('../TranThuc/images/Group.png')} />
             <TextInput style={styles.TextInput} placeholder='User name' onChangeText={setemail} >
             </TextInput>
             <TextInput style={styles.TextInput} placeholder='Name' onChangeText={setName} >
