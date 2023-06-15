@@ -19,6 +19,9 @@ import ItemHome from '../LongVu/ItemHome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Welcome from '../TranThuc/Welcome';
 import Notifications from '../LongVu/Notifications';
+import ChangePass from '../TranThuc/ChangePass';
+import ForgetPass from '../TranThuc/ForgetPass';
+import OTPValidate from '../TranThuc/OTPValidate';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +31,10 @@ const Users = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name='ForgetPass' component={ForgetPass} />
+      <Stack.Screen name='ChangePass' component={ChangePass} />
+      <Stack.Screen name='OTPValidate' component={OTPValidate} />
+
     </Stack.Navigator>
   )
 }
@@ -37,6 +44,7 @@ const Mains = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name='HomeDetails' component={HomeDetails} />
+      <Stack.Screen name='ChangePass' component={ChangePass} />
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>

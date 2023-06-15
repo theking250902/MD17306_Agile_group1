@@ -48,7 +48,7 @@ const ItemDetails = (props) => {
         }
     }
     const onPressBack = () => {
-        if (page < 1) {
+        if (page <= 1) {
             setpage(1)
         }
         else {

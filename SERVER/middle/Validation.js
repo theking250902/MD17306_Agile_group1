@@ -3,7 +3,7 @@
 //bat loi dang ky
 const checkRegister = async (req, res, next) => {
     try{
-        const {email, password, name, confirm_password} = req.body;
+        const {email,name, password , confirm_password} = req.body;
         if(!email || !password || !name || !confirm_password){
             return res.status(400).json({
                 result: false,

@@ -42,13 +42,13 @@ const Login = (props) => {
     }
     else {
       try {
+        ToastAndroid.show("Dang dang nhap ...", ToastAndroid.SHORT);
         const res = await AxiosIntance().post("/user/login", { email: email, password: password });
         if (res.result == true) {
           setinfoUser(res.user);
           setIsLogin(true);
           await AsyncStorage.setItem("token", res.token);
           ToastAndroid.show("Đăng Nhập thành công", ToastAndroid.SHORT);
-          setnewPass(password);
         } else {
           ToastAndroid.show("Đăng nhập that bai", ToastAndroid.SHORT);
         }
@@ -57,18 +57,21 @@ const Login = (props) => {
       }
     }
   }
-  const onRegister=()=>{
+  const onRegister = () => {
     navigation.navigate('Register')
+  }
+  const onForget = () => {
+    navigation.navigate('ForgetPass')
   }
   return (
     <View style={{ alignItems: 'center', flex: 1 }}>
       <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '30%' }} source={require('../TranThuc/images/Group.png')} />
-      <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='User name' onChangeText={setEmail} >
+      <TextInput style={styles.TextInput} placeholder='User name' onChangeText={setEmail} >
       </TextInput>
       <View style={{ flexDirection: 'row' }}>
-        <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='Password' onChangeText={setEmail} >
+        <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='Password' onChangeText={setPassword} >
         </TextInput>
-        <TouchableOpacity onPress={()=>setHide(!hide)} style={{ position: 'absolute', end: 0, top: '40%', marginRight: 10 }}>
+        <TouchableOpacity onPress={() => setHide(!hide)} style={{ position: 'absolute', end: 0, top: '40%', marginRight: 10 }}>
           <Image style={{ width: 35, height: 25, }} source={require('../src/hide.png')} />
         </TouchableOpacity>
       </View>
@@ -76,8 +79,9 @@ const Login = (props) => {
       <TouchableOpacity onPress={() => onClick()} style={{ backgroundColor: '#5B5D8B', width: windowsWidth - 100, height: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 18, marginTop: 18 }}>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: 700 }}>Log in</Text>
       </TouchableOpacity>
-
-      <Text style={{ marginTop: 15, marginBottom: 10 }}>Forgetten password?</Text>
+      <TouchableOpacity onPress={() => onForget()}>
+        <Text style={{ color: '#5B5D8B', fontSize: 14, fontWeight: 700,marginTop:10 }}>Forgetten password?</Text>
+      </TouchableOpacity>
 
       <Text style={{}}>-Or sign in with-</Text>
 
@@ -88,8 +92,8 @@ const Login = (props) => {
       </View>
       <View style={{ flexDirection: 'row' }}>
         <Text style={{}}>don't have an account yet ?</Text>
-        <TouchableOpacity onPress={()=>onRegister()}>
-          <Text style={{ color: '#5B5D8B' ,fontSize:14,fontWeight:700}}> Sign up</Text>
+        <TouchableOpacity onPress={() => onRegister()}>
+          <Text style={{ color: '#5B5D8B', fontSize: 14, fontWeight: 700 }}> Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>

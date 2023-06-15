@@ -41,6 +41,8 @@ const register = async (email, password, name) => {
     try {
         // ktra email co hay khong
         const user = await userModel.findOne({ email: email });
+        
+        console.log(user);
         if (!user) {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
@@ -53,7 +55,23 @@ const register = async (email, password, name) => {
     }
     return false;
 }
-module.exports = { login, register, getAllUsers, changepass };
+const findUser = async (email) => {
+    try {
+        // ktra email co hay khong
+        const user = await userModel.findOne({ email: email });
+        
+        console.log(user);
+        if (!user) {
+            return null;
+        }
+        else{
+            return user;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+module.exports = { login, register, getAllUsers, changepass,findUser };
 
 var users = [
     { _id: 1, email: 'abc@gmail.com', password: 1, name: 'Long Vu ChiPu' },

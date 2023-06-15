@@ -1,39 +1,53 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, ToastAndroid, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, TextInput, ToastAndroid, Dimensions,TouchableOpacity, Alert } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../util/AppContext';
 import AxiosIntance from '../util/AxiosIntance';
-const ResetPass = async (props) => {
+const windowsWidth = Dimensions.get('window').width;
+const windowsHeight = Dimensions.get('window').height;
+const ChangePass = (props) => {
+
   const { navigation } = props;
-  const [newPassword, setnewPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const { route } = props;
+  const { params } = route;
+  const {_id} = route.params;
   const [cNewPassword, setcNewPassword] = useState("")
-  const { setIsLogin, setinfoUser } = useContext(AppContext)
-  // const [setisRegister] = useState(AppContext)
-  const [newPass, setnewPass] = useState(AppContext);
+  const { infoUser, setinfoUser } = useContext(AppContext);
+  const { isLogin, setIsLogin } = useContext(AppContext);
   const onClickNe = async () => {
-    if (newPass == "") {
-      Alert.alert('Thông Báo', 'Tài khoản không được để trống ', [
-        {
-        },
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
-      ]);
-    } else if (newPass == "") {
-      Alert.alert('Thông Báo', 'Mật khẩu không được để trống ', [
-        {
-        },
-        { text: 'OK', onPress: () => console.log('OK Pressed') },
-      ]);
-    }
-    else if (passwordnew == "") {
-      console.log("asd:" + newPass)
+    if (newPassword == "") {
       Alert.alert('Thông Báo', 'Mật khẩu mới không được để trống ', [
         {
         },
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ]);
-    } else {
-      const response = await AxiosIntance().post("/api/user/changepass", { password: newPassword });
+    }
+    else if (newPassword.length<6) {
+      Alert.alert('Thông Báo', 'Mật khẩu phải trên 6 kí tự ', [
+        {
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+    }
+    else if (cNewPassword == "") {
+      Alert.alert('Thông Báo', 'Vui lòng nhập lại mật khẩu ', [
+        {
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+    } 
+    else if (cNewPassword != newPassword) {
+      Alert.alert('Thông Báo', 'Mật khẩu không khớp ', [
+        {
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+    }else {
+      console.log(_id, newPassword);
+      const response = await AxiosIntance().post("/user/changepass/", { _id: _id, new_password: newPassword });
       console.log(response)
       if (response.result == true) {
+        setIsLogin(false);
         setIsLogin(true);
         // navigation.navigate("DangNhap");
         ToastAndroid.show("Đổi mật khẩu thành công", ToastAndroid.SHORT);
@@ -43,37 +57,30 @@ const ResetPass = async (props) => {
     }
   }
   return (
-    <View>
-      <Text style={styles.Text1}>Reset password</Text>
-
-      <TextInput placeholder='Password' style={styles.Text2}>
+    <View style={{justifyContent:'center',alignItems:'center'}}>
+      <Text style={{fontSize:28,margin:'10%',fontWeight:700,}}>Reset password</Text>
+      <TextInput onChangeText={setNewPassword} placeholder='New password' style={styles.textInput}>
         <Text />
       </TextInput>
-
-      <Image style={styles.Line1} source={require('../TranThuc/images/Line23.png')} />
-
-      <TextInput placeholder='Newpassword' style={styles.Text3}>
+      <TextInput onChangeText={setcNewPassword} placeholder='Confirm password' style={styles.textInput}>
         <Text />
       </TextInput>
-
-      <Image style={styles.Line2} source={require('../TranThuc/images/Line23.png')} />
-
-      <TextInput placeholder='Confirmpassword' style={styles.Text4}>
-        <Text />
-      </TextInput>
-
-      <Image style={styles.Line3} source={require('../TranThuc/images/Line23.png')} />
-
-      <Pressable onPress={() => onClickNe()} style={styles.Press}>
+      <Pressable onPress={() => onClickNe()} style={{ backgroundColor: '#5B5D8B', width: windowsWidth - 100, height: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 18, marginTop: 18 }}>
         <Text style={styles.TextNut}>Update</Text>
       </Pressable>
     </View>
   )
 }
 
-export default ResetPass
+export default ChangePass
 
 const styles = StyleSheet.create({
+  textInput:{
+      width: windowsWidth - 100, borderWidth: 1, borderRadius: 18,
+      marginTop: 15,
+      paddingStart: 18,
+      fontSize: 18
+  },
   Text1: {
     position: 'absolute',
     marginTop: 128,

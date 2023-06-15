@@ -1,11 +1,10 @@
 import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, TouchableOpacity, Dimensions } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect ,useContext} from 'react'
 import ItemHome from './ItemHome';
 const windowsWidth = Dimensions.get('window').width;
 const windowsHeight = Dimensions.get('window').height;
 import ItemDetails from './HomeDetails';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import axios from 'axios';
+import { AppContext } from '../util/AppContext';
 import AxiosIntance from '../util/AxiosIntance';
 import { SafeAreaView } from 'react-native-safe-area-context';
 const Home = (props) => {
@@ -15,6 +14,7 @@ const Home = (props) => {
     const [isSearch, setIsSearch] = useState(false);
     const [searchText, setSearchText] = useState([]);
     const [data1, setdata1] = useState([]);
+    const { infoUser, setinfoUser } = useContext(AppContext);
     const [data2, setdata2] = useState([]);
     const [isLoading, setisLoading] = useState(true);
     const search = async (searchText) => {
@@ -60,19 +60,19 @@ const Home = (props) => {
             <ScrollView  >
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={{
-                        fontSize: 14,
+                        fontSize: 18,
                         fontWeight: '700',
                         color: '#5747BA',
                         marginLeft: 5,
-                        marginTop: 20
-                    }}>Hello , Dear</Text>
+                        marginTop: 15
+                    }}>Hello , {infoUser.name}</Text>
                     <Image style={{
                         marginTop: 10,
-                        marginLeft: 5
+                        marginLeft: 10
                     }} source={require('./images/hello.png')}></Image>
                 </View>
                 <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
-                    <TextInput placeholder='Search' onChangeText={setSearchText} style={{ width: windowsWidth - 60, fontSize: 18, borderWidth: 0.879, paddingStart: 20, borderColor: '#000000', borderRadius: 45, marginTop: 22, }}></TextInput>
+                    <TextInput placeholder='Search' onChangeText={setSearchText} style={{ width: windowsWidth - 60, fontSize: 18, borderWidth: 0.879, paddingStart: 20, borderColor: '#000000', borderRadius: 45, marginTop: 10, }}></TextInput>
                     <TouchableOpacity onPress={() => search(searchText)} style={{ position: 'absolute', start: '80%', top: '48%' }}>
                         <Image style={{
                         }} source={require('./images/search.png')}></Image>
