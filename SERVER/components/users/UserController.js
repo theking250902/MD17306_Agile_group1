@@ -30,10 +30,17 @@ const register = async (email,password,name)=>{
         console.log(error);
     }
 }
+const changepass = async (_id,password)=>{
+    try {
+        return await userService.changepass(_id,password);
+    } catch (error) {
+        console.log(error);
+    }
+}
 const sendMail = async (email,subject,content)=>{
     try {
         const mailOptions ={
-            from: 'Nguyen Ki Vu Ngu <asd@gmail.com>',
+            from: 'Book App',
             to:email,
             subject:subject,
             html:content
@@ -44,4 +51,17 @@ const sendMail = async (email,subject,content)=>{
     }
     return false;
 }
-module.exports={login,register,sendMail,getAllUsers};
+const findUser = async (email)=>{
+    try {
+        const user = await userService.findUser(email);
+        if(!user){
+            return null;
+        }
+        else{
+            return user;
+        }
+    } catch (error) {
+        console.log('Send mail error:',error);
+    }
+}
+module.exports={login,register,sendMail,getAllUsers,changepass,findUser};

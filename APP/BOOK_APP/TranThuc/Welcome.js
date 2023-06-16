@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     Nen:{
         flex: 1,
         backgroundColor: '#5B5D8B',
+        alignItems:'center'
     },
     Logo:{
         position: 'absolute',

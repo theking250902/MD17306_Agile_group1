@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import { StyleSheet, Text, View, Image, TextInput, ScrollView, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
+=======
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Dimensions, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
+>>>>>>> main
 import React from 'react'
 import { useState, useContext } from 'react'
 import { AppContext } from '../util/AppContext'
 import axios from 'axios'
+<<<<<<< HEAD
 import AxiosIntance from '../src/util/AxiosIntance'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -11,6 +16,18 @@ const Login = (props) => {
   const { setIsLogin, setinfoUser } = useContext(AppContext)
   const [newPass,setnewPass] = useState(AppContext);
   const [password, setPassword] = useState("");
+=======
+import AxiosIntance from '../util/AxiosIntance'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+const windowsWidth = Dimensions.get('window').width;
+const windowsHeight = Dimensions.get('window').height;
+const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const { setIsLogin, setinfoUser } = useContext(AppContext)
+  const [newPass, setnewPass] = useState(AppContext);
+  const [password, setPassword] = useState("");
+  const [hide, setHide] = useState(true);
+>>>>>>> main
   const { navigation } = props;
   const showAlert = (mess) => {
     Alert.alert(
@@ -38,15 +55,25 @@ const Login = (props) => {
     else if (password.length <= 0) {
       showAlert("Vui lòng nhập password")
     }
+<<<<<<< HEAD
      else {
       try {
         const res = await AxiosIntance().post("/api/user/login", { email: email, password: password });
+=======
+    else {
+      try {
+        ToastAndroid.show("Dang dang nhap ...", ToastAndroid.SHORT);
+        const res = await AxiosIntance().post("/user/login", { email: email, password: password });
+>>>>>>> main
         if (res.result == true) {
           setinfoUser(res.user);
           setIsLogin(true);
           await AsyncStorage.setItem("token", res.token);
           ToastAndroid.show("Đăng Nhập thành công", ToastAndroid.SHORT);
+<<<<<<< HEAD
           setnewPass(password);
+=======
+>>>>>>> main
         } else {
           ToastAndroid.show("Đăng nhập that bai", ToastAndroid.SHORT);
         }
@@ -55,16 +82,26 @@ const Login = (props) => {
       }
     }
   }
+  const onRegister = () => {
+    navigation.navigate('Register')
+  }
+  const onForget = () => {
+    navigation.navigate('ForgetPass')
+  }
   return (
-    <View>
-      <Image style={styles.Logo} source={require('../TranThuc/images/Group.png')} />
-
-      <TextInput placeholder='User name' onChangeText={setEmail} style={styles.TextInput1}>
-        <Text style={{
-          marginStart: 100
-        }} />
+    <View style={{ alignItems: 'center', flex: 1 }}>
+      <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '30%' }} source={require('../TranThuc/images/Group.png')} />
+      <TextInput style={styles.TextInput} placeholder='User name' onChangeText={setEmail} >
       </TextInput>
+      <View style={{ flexDirection: 'row' }}>
+        <TextInput secureTextEntry={hide} style={styles.TextInput} placeholder='Password' onChangeText={setPassword} >
+        </TextInput>
+        <TouchableOpacity onPress={() => setHide(!hide)} style={{ position: 'absolute', end: 0, top: '40%', marginRight: 10 }}>
+          <Image style={{ width: 35, height: 25, }} source={require('../src/hide.png')} />
+        </TouchableOpacity>
+      </View>
 
+<<<<<<< HEAD
       <TextInput placeholder='Password' onChangeText={setPassword} style={styles.TextInput2}>
         <Text />
       </TextInput>
@@ -84,7 +121,28 @@ const Login = (props) => {
       <Image style={styles.Twitter} source={require('../TranThuc/images/Twitter.png')}></Image>
 
       <Text style={styles.Text3}>don't have an account yet ?  Sign up </Text>
+=======
+      <TouchableOpacity onPress={() => onClick()} style={{ backgroundColor: '#5B5D8B', width: windowsWidth - 100, height: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 18, marginTop: 18 }}>
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 700 }}>Log in</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => onForget()}>
+        <Text style={{ color: '#5B5D8B', fontSize: 14, fontWeight: 700,marginTop:10 }}>Forgetten password?</Text>
+      </TouchableOpacity>
 
+      <Text style={{}}>-Or sign in with-</Text>
+>>>>>>> main
+
+      <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between', marginBottom: 10 }}>
+        <Image style={styles.ICON} source={require('../TranThuc/images/Google.png')}></Image>
+        <Image style={styles.ICON} source={require('../TranThuc/images/Facebook.png')}></Image>
+        <Image style={styles.ICON} source={require('../TranThuc/images/Twitter.png')}></Image>
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <Text style={{}}>don't have an account yet ?</Text>
+        <TouchableOpacity onPress={() => onRegister()}>
+          <Text style={{ color: '#5B5D8B', fontSize: 14, fontWeight: 700 }}> Sign up</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -92,10 +150,12 @@ const Login = (props) => {
 export default Login
 
 const styles = StyleSheet.create({
-  Logo: {
-    position: 'absolute',
-    marginTop: 186,
-    marginStart: 115,
+  TextInput: {
+    width: windowsWidth - 100, borderWidth: 1, borderRadius: 18,
+    marginTop: 15,
+    paddingStart: 18,
+    fontSize: 15
+
   },
   TextInput1: {
     position: 'absolute',

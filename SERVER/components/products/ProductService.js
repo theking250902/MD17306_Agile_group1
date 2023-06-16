@@ -1,9 +1,20 @@
 const productModel = require('./ProductModel');
+const detailModel = require('../detail/DetailModel');
 const getAllProducts = async (size, page) => {
     // lay toan bo sp trong database
     // size =20 , page =4 ==> 61-80
     try {
-        return await productModel.find().populate('category') // lay category;
+        return await productModel.find().populate('category').populate('detail')
+    } catch (error) {
+        console.log("getAllProducts error: " + error);
+    }
+    return [];
+}
+const getAllDetails = async (size, page) => {
+    // lay toan bo sp trong database
+    // size =20 , page =4 ==> 61-80
+    try {
+        return await detailModel.find()
     } catch (error) {
         console.log("getAllProducts error: " + error);
     }
@@ -71,7 +82,7 @@ const updateProduct = async (id, name,author,content,price,image,category) => {
 //
 const getProductById = async (id) => {
     try {
-        let product = await productModel.findById(id).populate('category') // lay category;;
+        let product = await productModel.findById(id).populate('category').populate('detail') // lay category;;
         return product;
     } catch (error) {
         console.log('getProductById error', error); 
@@ -93,7 +104,7 @@ const search = async(keyword)=>{
         console.log('search error', error); 
     }
 }
-module.exports = { getAllProducts, deleteProductById, addNewProduct, updateProduct, getProductById ,search};
+module.exports = { getAllProducts, deleteProductById, addNewProduct, updateProduct, getProductById ,search,getAllDetails};
 
 var data = [
     {
