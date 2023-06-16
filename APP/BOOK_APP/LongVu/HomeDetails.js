@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions, TouchableOpacity,StatusBar } from 'react-native'
 import React from 'react'
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
@@ -81,10 +81,10 @@ const ItemDetails = (props) => {
         }
     }, [])
     return (
-        <View style={{ flex: 1, padding: 10, paddingBottom: 0, width: '100%', height: windowsHeight - 40, }}>
+        <View style={{ flex: 1, padding: 10, paddingBottom: 0, width: '100%', height: windowsHeight - 40,backgroundColor:'white',marginTop:49 }}>
             {/* navigation chapter */}
-
-            <View style={{ width: '100%',marginBottom:5, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', backgroundColor: '#e6ede9', }}>
+            <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
+            <View style={{ borderRadius:10,width: '100%',marginBottom:5, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', backgroundColor: '#e6ede9', }}>
                 <TouchableOpacity onPress={() => { onPressTouch(), onPressBack(); }} style={styles.touch}>
                     <Image style={styles.iconNavigation} source={require('../src/back.png')} />
                 </TouchableOpacity>

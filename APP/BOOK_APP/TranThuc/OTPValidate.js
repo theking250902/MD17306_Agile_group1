@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Image, Dimensions, TouchableOpacity, ToastAndroid, Alert } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Image, Dimensions, TouchableOpacity, ToastAndroid, Alert, StatusBar } from 'react-native'
 import React, { useRef, useState, useContext } from 'react'
 import { AppContext } from '../util/AppContext';
 import AxiosIntance from '../util/AxiosIntance';
@@ -43,12 +43,14 @@ const OTPValidate = (props) => {
         }
 
     }
-    const onCheckOTPLogin = async(input,OTP)=>{
-        navigation.navigate('ChangePass',{_id:infoUser._id})
+    const onCheckOTPLogin = async (input, OTP) => {
+        navigation.navigate('ChangePass', { _id: infoUser._id })
 
     }
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center',backgroundColor:'white' }}>
+            <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
+
             <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '25%' }} source={require('../TranThuc/images/Group.png')} />
             <Text style={{ fontSize: 22, fontWeight: 700, textAlign: 'center' }}> Nhập OTP</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'center', textAlign: 'center' }}>

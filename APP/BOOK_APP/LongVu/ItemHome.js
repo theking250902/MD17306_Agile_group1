@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image ,Dimensions} from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image ,Dimensions,StatusBar} from 'react-native'
 import React from 'react'
 const windowsWidth = Dimensions.get('window').width;
 const windowsHeight = Dimensions.get('window').height;
@@ -10,12 +10,13 @@ const ItemHome = (props) => {
 
   return (
     <TouchableOpacity onPress={()=>ClickDetail()}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
         <View style={{ flexDirection: 'row'}}>
           <View style={styles.container}>
             <Image style={styles.images}  source={{ uri: products.image }}></Image>
             <Text style={styles.name}>{products.name}</Text>
             <Text style={styles.tacgia}>{products.author}</Text>
-            <Text style={styles.mota}>{products.content}</Text>
+            <Text  style={styles.mota}>{products.content}</Text>
             <Text style={styles.price}>{products.price}</Text>
           </View>
         </View>

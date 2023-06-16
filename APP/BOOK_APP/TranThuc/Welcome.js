@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View,Pressable, TouchableOpacity,  } from 'react-native'
+import { Image, StyleSheet, Text, View,Pressable, TouchableOpacity, StatusBar } from 'react-native'
 import React from 'react'
 
 const Welcome = (props) => {
@@ -12,7 +12,7 @@ const Welcome = (props) => {
   return (
 
     <View style={styles.Nen}>
-        
+        <StatusBar barStyle="dark-content" hidden={false} backgroundColor='#5B5D8B' translucent={true} />
         <Image style={styles.Logo} source={require('../TranThuc/images/Book.png')}></Image>
         <Text style={styles.Text1}>Welcome</Text>
         

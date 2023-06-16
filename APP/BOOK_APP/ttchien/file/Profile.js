@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Pressable,
+  StatusBar,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -23,7 +24,8 @@ const Profile = (props) => {
     navigation.navigate('Login');
   }
   return (
-    <ScrollView style={{ backgroundColor: '#DDDDDD' }}>
+    <ScrollView style={{ backgroundColor:'white',marginTop:'10%' }}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor= '#8983CC' translucent={true} />
       <Pressable style={styles.chien1}>
         <Image
           style={{ width: 90, height: 90, margin: 20 }}
@@ -32,12 +34,7 @@ const Profile = (props) => {
           Nguyễn Văn A
         </Text>
       </Pressable>
-      <Pressable style={styles.chien2}>
-        <Image
-          style={{ width: 30, height: 30, margin: 5, marginLeft: 10 }}
-          source={require('../icon-ver2/ic__home.png')}></Image>
-        <Text style={styles.text1}>Home</Text>
-      </Pressable>
+
       <Pressable style={styles.chien2}>
         <Image
           style={{ width: 30, height: 30, margin: 5, marginLeft: 10 }}
@@ -62,18 +59,8 @@ const Profile = (props) => {
           source={require('../icon-ver2/ic__heart.png')}></Image>
         <Text style={styles.text1}>Your favourite</Text>
       </Pressable>
-      <Pressable style={styles.chien2}>
-        <Image
-          style={{ width: 32, height: 32, margin: 5, marginLeft: 10 }}
-          source={require('../icon-ver2/ic__bestseller.png')}></Image>
-        <Text style={styles.text1}>Best sellers</Text>
-      </Pressable>
-      <Pressable style={styles.chien2}>
-        <Image
-          style={{ width: 32, height: 32, margin: 5, marginLeft: 10 }}
-          source={require('../icon-ver2/ic__coming-soon.png')}></Image>
-        <Text style={styles.text1}>Coming soon</Text>
-      </Pressable>
+
+
       <Pressable style={styles.chien2}>
         <Image
           style={{ width: 32, height: 32, margin: 5, marginLeft: 10 }}
@@ -108,12 +95,14 @@ const styles = StyleSheet.create({
   },
   chien2: {
     flexDirection: 'row',
-    margin: 2,
+    alignItems:'center',
+    margin: 10,
+    height:70,
     borderRadius: 10,
     backgroundColor: '#F5F5F5',
   },
   text1: {
-    marginTop: 10,
+    marginTop: 1,
     marginLeft: 10,
     color: '#110000',
     fontFamily: 'Hind Siliguri',

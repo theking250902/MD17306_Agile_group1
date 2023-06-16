@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, Dimensions, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Dimensions, Pressable, TouchableOpacity, Alert,StatusBar, ToastAndroid } from 'react-native'
 import React, { useRef } from 'react'
 import { useState, useContext } from 'react'
 import { AppContext } from '../util/AppContext'
@@ -87,7 +87,8 @@ const ForgetPass = (props) => {
     }
 
     return (
-        <View style={{ alignItems: 'center', flex: 1 }}>
+        <View style={{ alignItems: 'center', flex: 1,backgroundColor:'white' }}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
 
             <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '30%' }} source={require('../TranThuc/images/Group.png')} />
 

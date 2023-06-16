@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, Pressable, TouchableOpacity, ToastAndroid, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, Pressable,StatusBar, TouchableOpacity, ToastAndroid, Dimensions } from 'react-native'
 import React, { useState, useContext } from 'react'
 import { Alert } from 'react-native';
 import { AppContext } from '../util/AppContext';
@@ -87,8 +87,9 @@ const Register = (props) => {
   }
 
   return (
-    <View style={{ alignItems: 'center', flex: 1 }}>
-      <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '10%' }} source={require('../TranThuc/images/Group.png')} />
+    <View style={{ alignItems: 'center', flex: 1,backgroundColor:'white' }}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
+      <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '18%' }} source={require('../TranThuc/images/Group.png')} />
       <TextInput style={styles.TextInput} placeholder='Email' onChangeText={setemail} >
       </TextInput>
       <TextInput style={styles.TextInput} placeholder='Name' onChangeText={setName} >

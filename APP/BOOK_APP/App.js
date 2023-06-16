@@ -9,7 +9,7 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 <OTPInputView pinCount={4} />
 const App = () => {
-  LogBox.ignoreAllLogs(true)
+
    return (
      <AppContextProvider>
        <NavigationContainer styles={styles.container}>

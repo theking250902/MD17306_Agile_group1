@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, ToastAndroid, Dimensions,TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, TextInput, ToastAndroid, Dimensions,TouchableOpacity, Alert,StatusBar } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../util/AppContext';
 import AxiosIntance from '../util/AxiosIntance';
@@ -57,7 +57,8 @@ const ChangePass = (props) => {
     }
   }
   return (
-    <View style={{justifyContent:'center',alignItems:'center'}}>
+    <View style={{justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
       <Text style={{fontSize:28,margin:'10%',fontWeight:700,}}>Reset password</Text>
       <TextInput onChangeText={setNewPassword} placeholder='New password' style={styles.textInput}>
         <Text />

@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, TouchableOpacity, Dimensions } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, TouchableOpacity, Dimensions,StatusBar } from 'react-native'
 import React, { useState, useEffect ,useContext} from 'react'
 import ItemHome from './ItemHome';
 const windowsWidth = Dimensions.get('window').width;
@@ -56,9 +56,10 @@ const Home = (props) => {
         }
     }, []);
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center',backgroundColor:'white' ,marginTop:45}}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
             <ScrollView  >
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row',}}>
                     <Text style={{
                         fontSize: 18,
                         fontWeight: '700',
@@ -72,8 +73,8 @@ const Home = (props) => {
                     }} source={require('./images/hello.png')}></Image>
                 </View>
                 <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
-                    <TextInput placeholder='Search' onChangeText={setSearchText} style={{ width: windowsWidth - 60, fontSize: 18, borderWidth: 0.879, paddingStart: 20, borderColor: '#000000', borderRadius: 45, marginTop: 10, }}></TextInput>
-                    <TouchableOpacity onPress={() => search(searchText)} style={{ position: 'absolute', start: '80%', top: '48%' }}>
+                    <TextInput placeholder='Search' onChangeText={setSearchText} style={{ width: windowsWidth - 60, fontSize: 18, borderWidth: 1, paddingStart: 20, borderColor: '#000000', borderRadius: 45, marginTop: 10, }}></TextInput>
+                    <TouchableOpacity onPress={() => search(searchText)} style={{ position: 'absolute', start: '80%', top: '40%' }}>
                         <Image style={{
                         }} source={require('./images/search.png')}></Image>
                     </TouchableOpacity>
@@ -108,7 +109,7 @@ const Home = (props) => {
                                 marginTop: 20
                             }}>All Book</Text>
 
-                            <SafeAreaView style={{ flexDirection: 'row', width: '100%', marginTop: 10 }}>
+                            <SafeAreaView style={{ flexDirection: 'row', width: '100%',marginTop:-40 }}>
                                 <FlatList
                                     numColumns={2}
                                     data={data}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, ScrollView, Dimensions, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, Dimensions, StatusBar, Pressable, TouchableOpacity, Alert, ToastAndroid } from 'react-native'
 import React from 'react'
 import { useState, useContext } from 'react'
 import { AppContext } from '../util/AppContext'
@@ -42,8 +42,12 @@ const Login = (props) => {
     }
     else {
       try {
+        console.log(email);
+        console.log(password);
         ToastAndroid.show("Dang dang nhap ...", ToastAndroid.SHORT);
         const res = await AxiosIntance().post("/user/login", { email: email, password: password });
+        console.log(res);
+
         if (res.result == true) {
           setinfoUser(res.user);
           setIsLogin(true);
@@ -53,7 +57,7 @@ const Login = (props) => {
           ToastAndroid.show("Đăng nhập that bai", ToastAndroid.SHORT);
         }
       } catch {
-        ToastAndroid.show("Đăng nhập thất bạiuuuu", ToastAndroid.SHORT);
+        showAlert("Tài khoản hoặc mật khẩu không chính xác")
       }
     }
   }
@@ -64,7 +68,8 @@ const Login = (props) => {
     navigation.navigate('ForgetPass')
   }
   return (
-    <View style={{ alignItems: 'center', flex: 1 }}>
+    <View style={{ alignItems: 'center', flex: 1,backgroundColor:'white' }}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
       <Image style={{ width: windowsWidth / 1.5, height: 210, marginTop: '30%' }} source={require('../TranThuc/images/Group.png')} />
       <TextInput style={styles.TextInput} placeholder='User name' onChangeText={setEmail} >
       </TextInput>
@@ -80,7 +85,7 @@ const Login = (props) => {
         <Text style={{ color: 'white', fontSize: 18, fontWeight: 700 }}>Log in</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => onForget()}>
-        <Text style={{ color: '#5B5D8B', fontSize: 14, fontWeight: 700,marginTop:10 }}>Forgetten password?</Text>
+        <Text style={{ color: '#5B5D8B', fontSize: 14, fontWeight: 700, marginTop: 10 }}>Forgetten password?</Text>
       </TouchableOpacity>
 
       <Text style={{}}>-Or sign in with-</Text>
