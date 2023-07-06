@@ -22,6 +22,8 @@ import Notifications from '../LongVu/Notifications';
 import ChangePass from '../TranThuc/ChangePass';
 import ForgetPass from '../TranThuc/ForgetPass';
 import OTPValidate from '../TranThuc/OTPValidate';
+import Privacy from '../Bui_Viet/screen/Privacy';
+import ChangeProfile from '../Bui_Viet/screen/ChangeProfile';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -47,6 +49,9 @@ const Mains = () => {
       <Stack.Screen name='ChangePass' component={ChangePass} />
       <Stack.Screen name="Book" component={Book} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Privacy" component={Privacy} />
+      <Stack.Screen name="ChangeProfile" component={ChangeProfile} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
 
   )

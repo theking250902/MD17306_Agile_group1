@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, TouchableOpacity, Dimensions,StatusBar } from 'react-native'
-import React, { useState, useEffect ,useContext} from 'react'
+import { ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, TouchableOpacity, Dimensions, StatusBar } from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
 import ItemHome from './ItemHome';
 const windowsWidth = Dimensions.get('window').width;
 const windowsHeight = Dimensions.get('window').height;
@@ -17,9 +17,13 @@ const Home = (props) => {
     const { infoUser, setinfoUser } = useContext(AppContext);
     const [data2, setdata2] = useState([]);
     const [isLoading, setisLoading] = useState(true);
+
     const search = async (searchText) => {
         setisLoading(true);
         setIsSearch(true)
+        if (searchText.length < 1) {
+            setIsSearch(false)
+        }
         const respone = await AxiosIntance().get("/product/search/name?keyword=" + searchText);
         console.log("kq tim kiem: ", respone);
         console.log("tim kiem: ", searchText);
@@ -44,6 +48,7 @@ const Home = (props) => {
                 setdata(respone.product);
                 // lay du lieu ok
                 setisLoading(false);
+
             }
             else {
                 ToastAndroid.show("Lay du lieu that bai", ToastAndroid.SHORT);
@@ -56,10 +61,13 @@ const Home = (props) => {
         }
     }, []);
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center',backgroundColor:'white' ,marginTop:45}}>
-      <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
+        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', marginTop: 45 }}>
+            <StatusBar barStyle="dark-content" hidden={false} backgroundColor='white' translucent={true} />
+
             <ScrollView  >
-                <View style={{ flexDirection: 'row',}}>
+
+                <View style={{ flexDirection: 'row', }}>
+
                     <Text style={{
                         fontSize: 18,
                         fontWeight: '700',
@@ -109,7 +117,7 @@ const Home = (props) => {
                                 marginTop: 20
                             }}>All Book</Text>
 
-                            <SafeAreaView style={{ flexDirection: 'row', width: '100%',marginTop:-40 }}>
+                            <SafeAreaView style={{ flexDirection: 'row', width: '100%', marginTop: -40 }}>
                                 <FlatList
                                     numColumns={2}
                                     data={data}
@@ -127,6 +135,9 @@ const Home = (props) => {
                         </View>
                         :
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <TouchableOpacity style={{ width: 20, height: 60,position:'absolute' }}>
+                                <Image source={require('../src/back.png')} />
+                            </TouchableOpacity>
                             <Text style={{
                                 fontWeight: '500',
                                 textAlign: 'center',

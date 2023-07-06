@@ -23,30 +23,42 @@ const Profile = (props) => {
     setIsLogin(false)
     navigation.navigate('Login');
   }
+  const onProfile = () => {
+    navigation.navigate('ChangeProfile');
+  }
+  const onPrivacy = () => {
+    navigation.navigate('Privacy');
+  }
   return (
-    <ScrollView style={{ backgroundColor:'white',marginTop:'10%' }}>
-      <StatusBar barStyle="dark-content" hidden={false} backgroundColor= '#8983CC' translucent={true} />
+    <ScrollView style={{ backgroundColor: 'white',marginTop:'10%' }}>
+      <StatusBar barStyle="dark-content" hidden={false} backgroundColor= 'white' translucent={true} />
       <Pressable style={styles.chien1}>
         <Image
           style={{ width: 90, height: 90, margin: 20 }}
           source={require('../icon-ver2/ic__profile.png')}></Image>
         <Text style={{ marginTop: 50, fontSize: 30, color: '#000000' }}>
-          Nguyễn Văn A
+          {infoUser.name}
         </Text>
       </Pressable>
 
-      <Pressable style={styles.chien2}>
+      <TouchableOpacity onPress={() => onProfile()} style={[styles.chien2,]}>
         <Image
           style={{ width: 30, height: 30, margin: 5, marginLeft: 10 }}
           source={require('../icon-ver2/ic__profile2.png')}></Image>
-        <Text style={styles.text1}>Profile</Text>
-      </Pressable>
-      <Pressable style={styles.chien2}>
+        <Text style={styles.text1}>Change Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => onPrivacy()} style={[styles.chien2,]}>
         <Image
           style={{ width: 30, height: 30, margin: 5, marginLeft: 10 }}
           source={require('../icon-ver2/ic__privacy.png')}></Image>
         <Text style={styles.text1}>Privacy</Text>
-      </Pressable>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => onLogout()} style={[styles.chien2,]}>
+        <Image
+          style={{ width: 30, height: 30, margin: 5, marginLeft: 10 }}
+          source={require('../icon-ver2/ic__logout.png')}></Image>
+        <Text style={styles.text1}>Log Out</Text>
+      </TouchableOpacity>
       <Pressable onPress={() => onResetPass()} style={styles.chien2}>
         <Image
           style={{ width: 30, height: 30, margin: 5, marginLeft: 10 }}
@@ -90,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 150,
     width: '100%',
-    backgroundColor: '#8983CC',
+    backgroundColor:'white',
     marginBottom: 5,
   },
   chien2: {
@@ -99,7 +111,7 @@ const styles = StyleSheet.create({
     margin: 10,
     height:70,
     borderRadius: 10,
-    backgroundColor: '#F5F5F5',
+    backgroundColor:  '#dfdfdf',
   },
   text1: {
     marginTop: 1,
